@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: admin-server
+  config:
+    location: classpath:application.yml
+  cloud:
+    config:
+      enabled: off
