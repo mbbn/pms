@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_RED}  _____ ${AnsiColor.BRIGHT_GREEN} __  __ ${AnsiColor.BRIGHT_CYAN} _____
+${AnsiColor.BRIGHT_RED} |  __ \${AnsiColor.BRIGHT_GREEN}|  \/  |${AnsiColor.BRIGHT_CYAN}/ ____|
+${AnsiColor.BRIGHT_RED} | |__) ${AnsiColor.BRIGHT_GREEN}| \  / |${AnsiColor.BRIGHT_CYAN} (___
+${AnsiColor.BRIGHT_RED} |  ___/${AnsiColor.BRIGHT_GREEN}| |\/| |${AnsiColor.BRIGHT_CYAN}\___ \
+${AnsiColor.BRIGHT_RED} | |    ${AnsiColor.BRIGHT_GREEN}| |  | |${AnsiColor.BRIGHT_CYAN}____) |
+${AnsiColor.BRIGHT_RED} |_|    ${AnsiColor.BRIGHT_GREEN}|_|  |_|${AnsiColor.BRIGHT_CYAN}_____/
+
+${AnsiColor.CYAN}Mohammad Biabani Archetype Java            :: Running Spring Boot ${spring-boot.version}
+biabani.mohammad@gmail.com  ${AnsiColor.DEFAULT}
