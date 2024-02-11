@@ -11,6 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
+import ToggleLocale from "./ToggleLocale";
+import {enUS, faIR, Localization} from "@mui/material/locale";
 
 const logoStyle = {
   width: '140px',
@@ -19,11 +21,13 @@ const logoStyle = {
 };
 
 interface AppAppBarProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
+    mode: PaletteMode;
+    toggleColorMode: () => void;
+    locale: Localization;
+    toggleLocale: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -45,7 +49,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
   };
 
   return (
-    <div>
+      <div dir={locale === faIR ? 'rtl' : 'ltr'}>
       <AppBar
         position="fixed"
         sx={{
@@ -144,6 +148,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 alignItems: 'center',
               }}
             >
+                <ToggleLocale locale={locale} toggleLocale={toggleLocale}/>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
