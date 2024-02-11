@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Spring Boot ###
+*.pid
+
+### NodeJS ###
+**/node_modules

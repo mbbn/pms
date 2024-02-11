@@ -14,10 +14,9 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties>
-    </properties>
+    <properties/>
 
-    <profiles></profiles>
+    <profiles/>
 
     <dependencies>
         <dependency>
