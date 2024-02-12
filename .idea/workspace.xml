@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="715b35aa-376c-46e0-b9d4-78dac81f3487" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-server/src/main/java/ir/mbbn/adminserver/AdminServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-server/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-server/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/ir/mbbn/application/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/ir/mbbn/application/filter/RequestLogFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/ir/mbbn/configserver/ConfigServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kubernetes-monifest.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/getPMSTheme.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/lang/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/lang/fa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/AppAppBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/FAQ.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Features.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Footer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Hero.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Highlights.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/LogoCollection.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Pricing.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/Testimonials.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/ToggleColorMode.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/getLPTheme.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,16 +30,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="2-i118n" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2cAMkJgceZGvCYaqMRackTP1Aih" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,9 +56,12 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "db6e8c1a",
+    "git-widget-placeholder": "theme",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "settings.editor.selected.configurable": "inlay.hints",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
