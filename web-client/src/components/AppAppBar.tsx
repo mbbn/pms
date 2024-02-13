@@ -11,8 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
-import ToggleLocale from "./ToggleLocale";
-import {enUS, faIR, Localization} from "@mui/material/locale";
+import LanguageSelector from './LanguageSelector';
+import {FormattedMessage} from "react-intl";
 
 const logoStyle = {
   width: '140px',
@@ -23,11 +23,11 @@ const logoStyle = {
 interface AppAppBarProps {
     mode: PaletteMode;
     toggleColorMode: () => void;
-    locale: Localization;
-    toggleLocale: () => void;
+    locale: string;
+    handleLocale: (locale: string) => void;
 }
 
-function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarProps) {
+function AppAppBar({ mode, toggleColorMode, locale, handleLocale }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -49,7 +49,7 @@ function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarPro
   };
 
   return (
-      <div dir={locale === faIR ? 'rtl' : 'ltr'}>
+    <div>
       <AppBar
         position="fixed"
         sx={{
@@ -148,7 +148,7 @@ function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarPro
                 alignItems: 'center',
               }}
             >
-                <ToggleLocale locale={locale} toggleLocale={toggleLocale}/>
+              <LanguageSelector locale={locale} handleLocale={handleLocale} />
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
@@ -158,7 +158,7 @@ function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarPro
                 href="/material-ui/getting-started/templates/sign-in/"
                 target="_blank"
               >
-                Sign in
+                  <FormattedMessage id={'home.signIn'} defaultMessage='Sign in'/>
               </Button>
               <Button
                 color="primary"
@@ -168,7 +168,7 @@ function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarPro
                 href="/material-ui/getting-started/templates/sign-up/"
                 target="_blank"
               >
-                Sign up
+                  <FormattedMessage id={'home.signUp'} defaultMessage='Sign up'/>
               </Button>
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>
