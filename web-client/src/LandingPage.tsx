@@ -14,7 +14,7 @@ export default function LandingPage() {
     const [mode, setMode] = React.useState<PaletteMode>('dark');
     const theme = createTheme(getPMSTheme(mode));
     const [cookies, setCookie] = useCookies(["locale"]);
-    const [locale, setLocale] = React.useState(cookies.locale ? cookies.locale : 'fa-IR');
+    const [locale, setLocale] = React.useState(cookies.locale);
     const [lang, setLang] = React.useState(locale === 'en-US' ? English : Persian);
     const handleLocale = (locale: string) => {
         setLocale(locale);
@@ -31,7 +31,7 @@ export default function LandingPage() {
 
     return (
         <div dir={locale === 'en-US' ? 'ltr' : 'rtl'}>
-            <IntlProvider locale={locale} messages={lang}>
+            <IntlProvider locale={locale} messages={lang} defaultLocale="fa-IR" timeZone="Asia/Terhan">
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <AppAppBar mode={mode} toggleColorMode={toggleColorMode} locale={locale} handleLocale={handleLocale}/>
