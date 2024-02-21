@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {SelectChangeEvent} from '@mui/material';
 import {US, IR} from 'country-flag-icons/react/3x2';
 
 import {useIntl} from 'react-intl';

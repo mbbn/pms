@@ -32,7 +32,7 @@ export default function LandingPage() {
 
     return (
         <div dir={locale === 'en-US' ? 'ltr' : 'rtl'}>
-            <IntlProvider locale={locale} messages={lang}>
+            <IntlProvider locale={locale} messages={lang} defaultLocale="fa-IR" timeZone="Asia/Terhan">
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <AppAppBar mode={mode} toggleColorMode={toggleColorMode} locale={locale} toggleLocale={toggleLocale}/>
