@@ -24,10 +24,10 @@ interface AppAppBarProps {
     mode: PaletteMode;
     toggleColorMode: () => void;
     locale: string;
-    handleLocale: (locale: string) => void;
+    toggleLocale: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode, locale, handleLocale }: AppAppBarProps) {
+function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
   const intl = useIntl();
 
@@ -115,7 +115,7 @@ function AppAppBar({ mode, toggleColorMode, locale, handleLocale }: AppAppBarPro
                 alignItems: 'center',
               }}
             >
-              <ToggleLocale locale={locale} handleLocale={handleLocale} />
+              <ToggleLocale locale={locale} toggleLocale={toggleLocale} />
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"

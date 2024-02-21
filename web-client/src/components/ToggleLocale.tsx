@@ -9,23 +9,17 @@ import Box from "@mui/material/Box";
 
 interface ToggleLocaleProps {
     locale: string;
-    handleLocale: (locale: string) => void;
+    toggleLocale: () => void
 }
 
-function ToggleLocale({locale, handleLocale}: ToggleLocaleProps) {
+function ToggleLocale({locale, toggleLocale}: ToggleLocaleProps) {
     const intl = useIntl();
-
-    const handleChangeLocale = (event: SelectChangeEvent) => {
-        handleLocale(event.target.value as string);
-    };
 
     return (
         <Box sx={{maxWidth: '32px'}}>
             <Button
                 variant="text"
-                onClick={() => {
-                    handleLocale(locale === 'fa-IR' ? 'en-US' : 'fa-IR')
-                }}
+                onClick={toggleLocale}
                 size="small"
                 lang={locale}
                 title={intl.formatMessage({id: 'language'})}
@@ -37,7 +31,6 @@ function ToggleLocale({locale, handleLocale}: ToggleLocaleProps) {
                     <US style={{width: 30, height: 30, borderRadius: 100}}/>}
             </Button>
         </Box>
-
     );
 }
 

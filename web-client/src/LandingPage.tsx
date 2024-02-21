@@ -13,13 +13,9 @@ export default function LandingPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
     const theme = createTheme(getPMSTheme(mode));
     const [cookies, setCookie] = useCookies(["locale"]);
-    const [locale, setLocale] = React.useState(cookies.locale ? cookies.locale : 'fa-IR');
+    const [locale, setLocale] = React.useState<string>(cookies.locale ? cookies.locale : 'fa-IR');
     const [lang, setLang] = React.useState(locale === 'en-US' ? English : Persian);
-    const handleLocale = (locale: string) => {
-        setLocale(locale);
-        setLang(locale === 'en-US' ? English : Persian);
-        setCookie("locale", locale, { path: "/", maxAge: 10000, secure: true })
-    }
+
     if (cookies.locale === undefined) {
         setCookie("locale", locale, { path: "/", maxAge: 10000, secure: true})
     }
@@ -28,12 +24,18 @@ export default function LandingPage() {
         setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
     };
 
+    const toggleLocale = () => {
+        setLocale((prev) => (prev === 'fa-IR' ? 'en-US' : 'fa-IR'))
+        setLang(locale === 'en-US' ? English : Persian);
+        setCookie("locale", locale, { path: "/", maxAge: 10000, secure: true })
+    };
+
     return (
         <div dir={locale === 'en-US' ? 'ltr' : 'rtl'}>
             <IntlProvider locale={locale} messages={lang}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <AppAppBar mode={mode} toggleColorMode={toggleColorMode} locale={locale} handleLocale={handleLocale}/>
+                    <AppAppBar mode={mode} toggleColorMode={toggleColorMode} locale={locale} toggleLocale={toggleLocale}/>
                 </ThemeProvider>
             </IntlProvider>
         </div>
