@@ -12,7 +12,10 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 import ToggleLocale from './ToggleLocale';
-import {useIntl, FormattedMessage} from "react-intl";
+import i18n from '../i18n/i18n';
+import {
+    Link as RouterLink,
+} from 'react-router-dom';
 
 const logoStyle = {
   width: '140px',
@@ -23,13 +26,11 @@ const logoStyle = {
 interface AppAppBarProps {
     mode: PaletteMode;
     toggleColorMode: () => void;
-    locale: string;
-    toggleLocale: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarProps) {
-  const [open, setOpen] = React.useState(false);
-  const intl = useIntl();
+function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+    const [open, setOpen] = React.useState(false);
+    const { t } = i18n;
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -97,45 +98,49 @@ function AppAppBar({ mode, toggleColorMode, locale, toggleLocale }: AppAppBarPro
                 style={logoStyle}
                 alt="logo of sitemark"
               />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  onClick={() => scrollToSection('features')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                      {intl.formatMessage({id:'menu.mainPage'})}
-                  </Typography>
-                </MenuItem>
-              </Box>
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <MenuItem
+                        onClick={() => scrollToSection('features')}
+                        sx={{ py: '6px', px: '12px' }}
+                    >
+                        <RouterLink to={'/'} style={{textDecoration: 'none'}}>
+                            <Typography variant="body2" color="text.primary">
+                                {t('menu.mainPage')}
+                            </Typography>
+                        </RouterLink>
+                    </MenuItem>
+                </Box>
             </Box>
-            <Box
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                gap: 0.5,
-                alignItems: 'center',
-              }}
-            >
-              <ToggleLocale locale={locale} toggleLocale={toggleLocale} />
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+              <Box
+                  sx={{
+                      display: {xs: 'none', md: 'flex'},
+                      gap: 0.5,
+                      alignItems: 'center',
+                  }}
+              >
+                  <ToggleLocale/>
+                  <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
                 variant="text"
                 size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-in/"
+                href=""
                 target="_blank"
               >
-                  <FormattedMessage id={'home.signIn'} defaultMessage='Sign in'/>
+                  <RouterLink to={'/signIn'} style={{textDecoration: 'none'}}>
+                      {t('signIn')}
+                  </RouterLink>
               </Button>
               <Button
                 color="primary"
-                variant="contained"
+                variant="outlined"
                 size="small"
-                component="a"
-                href="/material-ui/getting-started/templates/sign-up/"
+                href=""
                 target="_blank"
               >
-                  <FormattedMessage id={'home.signUp'} defaultMessage='Sign up'/>
+                  <RouterLink to={'/signUp'} style={{textDecoration: 'none'}}>
+                      {t('signUp')}
+                  </RouterLink>
               </Button>
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>

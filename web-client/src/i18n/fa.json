@@ -1,0 +1,21 @@
+{
+  "language": "زبان",
+  "language.english": "انگلیسی",
+  "language.persian": "فارسی",
+  "home.signIn": "ورود",
+  "menu.mainPage": "صفحه اصلی",
+  "signUp": "ثبت نام",
+  "signUp.firstName": "نام",
+  "signUp.firstName.help": "نام خود را وارد نمایید.",
+  "signUp.lastName": "نام خانوادگی",
+  "signUp.lastName.help": "نام خانوادگی خود را وارد نمایید.",
+  "signUp.email": "ایمیل",
+  "signUp.email.help": "ایمیل خود را وارد نمایید.",
+  "signUp.password": "کلمه عبور",
+  "signUp.password.help": "کلمه عبور خود را وارد نمایید.",
+  "signUp.alreadyHaveAccount": "قبلا ثیت نام کرده ام!",
+  "signIn": "ورود",
+  "signIn.remember": "مرا بخاطر بیار",
+  "signIn.forgotPassword": "کلمه عبور را فراموش کرده ام!",
+  "signIn.dontHaveAccount": "هنوز ثبت نام نکرده ام"
+}

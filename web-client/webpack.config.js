@@ -70,7 +70,7 @@ module.exports = function (_env, argv){
             }),
             new CopyPlugin({
                 patterns: [
-                    { from: "src/img", to: "img" }
+                    { from: "src/assets/img", to: "img" }
                 ]
             }),
         ],
