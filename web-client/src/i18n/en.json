@@ -1,0 +1,21 @@
+{
+  "language": "language",
+  "language.english": "English",
+  "language.persian": "Persian",
+  "home.signIn": "Sign in",
+  "menu.mainPage": "Main",
+  "signUp": "Sign Up",
+  "signUp.firstName": "First Name",
+  "signUp.firstName.help": "Please insert your First Name!",
+  "signUp.lastName": "Last Name",
+  "signUp.lastName.help": "Please insert your Last Name!",
+  "signUp.email": "Email",
+  "signUp.email.help": "Please insert your Email!",
+  "signUp.password": "Password",
+  "signUp.password.help": "Please insert your Password!",
+  "signUp.alreadyHaveAccount": "Already have an account? Sign in",
+  "signIn": "Sign In",
+  "signIn.remember": "Remember me",
+  "signIn.forgotPassword": "Forgot password?",
+  "signIn.dontHaveAccount": "Don't have an account? Sign Up"
+}
