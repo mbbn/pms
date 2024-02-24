@@ -82,6 +82,25 @@ module.exports = function (_env, argv){
             static: path.join(__dirname, 'dist'),
             compress: true,
             port: 4000,
+            hot: true,
+            proxy:{
+                '/api' : {
+                    target: 'http://localhost:8080',
+                    router: ()=>'http://localhost:4000',
+                    logLevel: 'debug',
+                    bypass: (req, res) => {
+                        if('/api/login' === req.path) {
+                            res.send({
+                                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ItmF2K3ZhdivINio24zYp9io2KfZhtuMIiwiaWF0IjoxNTE2MjM5MDIyfQ.ixGZ_tdHOM6Gns7H6Ym0R2h-HUmyvcGZKf5ukjp_G5c"
+                            });
+                        } else if('/api/logout' === req.path){
+                            res.send();
+                        } else {
+                            res.send();
+                        }
+                    }
+                }
+            }
         },
     };
 }

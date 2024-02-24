@@ -1,12 +1,20 @@
 import User from "../model/User";
 import {jwtDecode} from "jwt-decode";
+import SecurityService from "../service/SecurityService";
 
 export default class SecurityUtil {
 
-    static TOKEN: string = 'token';
+    static INSTANCE: SecurityUtil = new SecurityUtil();
+    private _TOKEN: string = 'token';
+    private securityService: SecurityService;
+
+    constructor() {
+        this.securityService = new SecurityService();
+    }
+
     static currentUser(): User| null {
         let currentUser = null;
-        let token = localStorage.getItem(this.TOKEN);
+        let token = localStorage.getItem(SecurityUtil.INSTANCE._TOKEN);
         if (token) {
             currentUser = jwtDecode(token);
         }
@@ -14,12 +22,23 @@ export default class SecurityUtil {
     }
 
     static login(username: string | undefined, password: string | undefined) {
-        localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ItmF2K3ZhdivINio24zYp9io2KfZhtuMIiwiaWF0IjoxNTE2MjM5MDIyfQ.ixGZ_tdHOM6Gns7H6Ym0R2h-HUmyvcGZKf5ukjp_G5c');
-        window.location.href = '/';
+        let instance = SecurityUtil.INSTANCE;
+        if (typeof username === "string" && typeof password === "string") {
+            instance.securityService.login(username, password).then(resp => {
+                if(resp && typeof resp.access_token !== undefined){
+                    let access_token:string = resp.access_token;
+                    localStorage.setItem(SecurityUtil.INSTANCE._TOKEN, access_token);
+                    window.location.href = '/';
+                }
+            });
+        }
     }
 
     static logout() {
-        localStorage.removeItem(this.TOKEN)
-        window.location.reload();
+        let instance = SecurityUtil.INSTANCE;
+        instance.securityService.logout().then(resp => {
+            localStorage.removeItem(SecurityUtil.INSTANCE._TOKEN)
+            window.location.reload();
+        });
     }
 }
