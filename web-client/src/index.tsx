@@ -5,7 +5,7 @@ import {Route, BrowserRouter, Routes} from "react-router-dom";
 import SignUpPage from "./view/SignUpPage";
 import SignInPage from "./view/SignInPage";
 import i18n from "./i18n/i18n";
-
+import AdminPage from "./view/AdminPage";
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement!);
@@ -17,6 +17,7 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<LandingPage/>}/>
+            <Route path={"/admin"} element={<AdminPage/>}/>
             <Route path={"/signUp"} element={<SignUpPage/>}/>
             <Route path={"/signIn"} element={<SignInPage/>}/>
         </Routes>
