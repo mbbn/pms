@@ -35,7 +35,6 @@ function Copyright(props: any) {
 export default function SignUpPage() {
     const theme = createTheme(getPMSTheme('light'));
     const {t, dir, language, format} = i18n;
-    console.log(format(new Date(),language, 'yyyy'))
 
     const cacheRtl = createCache({
         key: 'muirtl',
