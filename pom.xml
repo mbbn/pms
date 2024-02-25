@@ -30,7 +30,6 @@
         <module>config-server</module>
         <module>admin-server</module>
         <module>application</module>
-        <module>web-client</module>
     </modules>
 
     <dependencyManagement>
