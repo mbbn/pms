@@ -4,12 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="715b35aa-376c-46e0-b9d4-78dac81f3487" name="Changes" comment="feature: added SignInPage.tsx and SignUpPage.tsx">
+    <list default="true" id="715b35aa-376c-46e0-b9d4-78dac81f3487" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web-client/src/assets/fonts/Vazir.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/assets/fonts/Vazir.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/assets/fonts/Vazir.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/assets/fonts/Vazir.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/assets/scss/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/components/Hero.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/i18n/i18n.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/view/SignInPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-client/src/view/SignUpPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/view/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/AppAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/components/AppAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/components/ToggleLocale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/components/ToggleLocale.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-client/src/getPMSTheme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/getPMSTheme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-client/src/view/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/view/LandingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-client/src/view/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/view/SignInPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/icons/RootSvg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/assets/icons/RootSvg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/icons/SvgMaterialDesign.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/assets/icons/SvgMaterialDesign.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/img/a.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/assets/img/a.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/i18n/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/lang/fa.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/src/i18n/fa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-client/src/scss/main.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web-client/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web-client/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="6-create-datatable" />
+        <entry key="$PROJECT_DIR$" value="theme" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,9 +81,9 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;banner&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mohammad Biabani/IdeaProjects/pms/web-client/src/assets/img&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mohammad Biabani/IdeaProjects/pms/web-client/src/view&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -77,7 +96,6 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mohammad Biabani\IdeaProjects\pms\web-client\src\assets\img" />
       <recent name="C:\Users\Mohammad Biabani\IdeaProjects\pms\web-client\src\view" />
       <recent name="C:\Users\Mohammad Biabani\IdeaProjects\pms\web-client\src\lang" />
       <recent name="C:\Users\Mohammad Biabani\IdeaProjects\pms\web-client\src\fonts" />
@@ -88,13 +106,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="pms" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.mbbn.application.Application" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/web-client/package.json" />
       <command value="run" />
@@ -129,7 +140,6 @@
       <item itemvalue="npm.build" />
       <item itemvalue="npm.develop" />
       <item itemvalue="npm.start" />
-      <item itemvalue="Spring Boot.Application" />
     </list>
     <recent_temporary>
       <list>
@@ -154,17 +164,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature: added locale and language" />
