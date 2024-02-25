@@ -17,12 +17,6 @@ import {
     Link as RouterLink,
 } from 'react-router-dom';
 
-const logoStyle = {
-  width: '140px',
-  height: 'auto',
-  cursor: 'pointer',
-};
-
 interface AppAppBarProps {
     mode: PaletteMode;
     toggleColorMode: () => void;
@@ -93,11 +87,23 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 px: 0,
               }}
             >
-              <img
-                src='https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+                <Box component="div" sx={theme => ({
+                    cursor: 'pointer',
+                    [theme.breakpoints.up("sm")] : {
+                        width: 200,
+                        minHeight: 50
+                    },
+                    [theme.breakpoints.down("sm")] : {
+                        width: 150,
+                        minHeight: 30
+                    },
+                    backgroundImage:'url(./img/logo.svg)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: (t) =>
+                        t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                })}/>
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <MenuItem
                         onClick={() => scrollToSection('features')}
