@@ -1,7 +1,7 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import {ThemeOptions} from "@mui/material/styles";
 import {alpha, PaletteMode} from "@mui/material";
-import {red} from "@mui/material/colors";
+import {blueGrey, lightBlue, red} from "@mui/material/colors";
 import i18n from "./i18n/i18n";
 
 const {language, dir} = i18n;
@@ -207,10 +207,17 @@ export default function getPMSTheme(mode: PaletteMode): ThemeOptions {
         direction: dir(language),
         ...getDesignTokens(mode),
         components:{
-            MuiTextField: {
+            MuiTable: {
                 styleOverrides: {
                     root: ({theme}) => ({
-
+                        '& .MuiTableHead-root': {
+                            backgroundColor: theme.palette.mode === 'dark' ? gray[800]:lightBlue[100],
+                            fontWeight: 'strong'
+                        },
+                        '& .MuiTableRow-root:nth-child(even)': {
+                            backgroundColor: theme.palette.mode === 'dark' ? gray[600]:lightBlue[50],
+                            fontWeight: 'strong'
+                        }
                     })
                 }
             }

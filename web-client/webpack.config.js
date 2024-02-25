@@ -40,7 +40,11 @@ module.exports = function (_env, argv){
                 {
                     test: /\.css$/,
                     use: [MiniCssExtractPlugin.loader, "css-loader"]
-                }
+                },
+                {
+                    test: /\.(png|jpg|gif)$/i,
+                    type: 'assets'
+                },
             ]
         },
         resolve: {
