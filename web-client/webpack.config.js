@@ -57,7 +57,7 @@ module.exports = function (_env, argv){
         },
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'our project',
+                title: 'گروه صنعتی کاراکابین',
                 template: 'src/index.html',
                 hash: false,
                 minify: true,
@@ -74,7 +74,8 @@ module.exports = function (_env, argv){
             }),
             new CopyPlugin({
                 patterns: [
-                    { from: "src/assets/img", to: "img" }
+                    { from: "src/assets/img", to: "img" },
+                    { from: `${__dirname}/src/assets/favicons`, to: 'favicons' }
                 ]
             }),
         ],

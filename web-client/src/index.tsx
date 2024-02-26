@@ -2,10 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import LandingPage from "./view/LandingPage";
 import {Route, BrowserRouter, Routes} from "react-router-dom";
-import SignUpPage from "./view/SignUpPage";
-import SignInPage from "./view/SignInPage";
 import i18n from "./i18n/i18n";
-import AdminPage from "./view/AdminPage";
+import UnderConstruct from "./view/UnderConstruct";
+
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement!);
@@ -17,9 +16,9 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<LandingPage/>}/>
-            <Route path={"/admin"} element={<AdminPage/>}/>
-            <Route path={"/signUp"} element={<SignUpPage/>}/>
-            <Route path={"/signIn"} element={<SignInPage/>}/>
+            <Route path={"/admin"} element={<UnderConstruct/>}/>
+            <Route path={"/signUp"} element={<UnderConstruct/>}/>
+            <Route path={"/signIn"} element={<UnderConstruct/>}/>
         </Routes>
     </BrowserRouter>
 );
