@@ -207,6 +207,7 @@ export default function getPMSTheme(mode: PaletteMode): ThemeOptions {
         direction: dir(language),
         ...getDesignTokens(mode),
         components:{
+
             MuiTextField: {
                 styleOverrides: {
                     root: ({theme}) => ({

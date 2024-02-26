@@ -35,7 +35,6 @@ function Copyright(props: any) {
 export default function SignUpPage() {
     const theme = createTheme(getPMSTheme('light'));
     const {t, dir, language, format} = i18n;
-    console.log(format(new Date(),language, 'yyyy'))
 
     const cacheRtl = createCache({
         key: 'muirtl',
@@ -103,9 +102,9 @@ export default function SignUpPage() {
                                         fullWidth
                                         id="email"
                                         name="email"
-                                        placeholder="info@example.com"
-                                        label={t('signUp.email')}
-                                        helperText={t('signUp.email.help')}
+                                        placeholder={t('email.placeholder')}
+                                        label={t('email')}
+                                        helperText={t('email.help')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
