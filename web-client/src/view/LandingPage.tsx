@@ -77,14 +77,14 @@ export default function LandingPage() {
                     }}
                 >
                     <AboutUs/>
-                    <Grid container spacing={1} textAlign={"center"}
+                    <Grid container spacing={1} columns={{xs:4, md:12}}
                         sx={(theme) => ({
                             mt: {xs: 8, sm: 10},
                         })}
                     >
                         {cars.map(car =>
-                            <Grid item xs={12} xl={8} sm={4} md={3} lg={2}>
-                                <Card sx={{maxWidth: 245}}>
+                            <Grid item xs={12} sm={8} md={2}>
+                                <Card>
                                     <CardMedia
                                         component="img"
                                         height="140"
