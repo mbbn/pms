@@ -16,6 +16,7 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<LandingPage/>}/>
+            <Route path={"/admin"} element={<UnderConstruct/>}/>
             <Route path={"/signUp"} element={<UnderConstruct/>}/>
             <Route path={"/signIn"} element={<UnderConstruct/>}/>
         </Routes>

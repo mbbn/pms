@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PaletteMode } from '@mui/material';
+import {PaletteMode} from '@mui/material';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,33 +16,38 @@ import i18n from '../i18n/i18n';
 import {
     Link as RouterLink,
 } from 'react-router-dom';
+import SecurityUtil from "../util/SecurityUtil";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 interface AppAppBarProps {
     mode: PaletteMode;
     toggleColorMode: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+function AppAppBar({mode, toggleColorMode}: AppAppBarProps) {
     const [open, setOpen] = React.useState(false);
-    const { t } = i18n;
+    const {t} = i18n;
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+    const currentUser = SecurityUtil.currentUser();
+    console.log(currentUser);
 
-  const scrollToSection = (sectionId: string) => {
-    const sectionElement = document.getElementById(sectionId);
-    const offset = 128;
-    if (sectionElement) {
-      const targetScroll = sectionElement.offsetTop - offset;
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth',
-      });
-      setOpen(false);
-    }
-  };
+    const toggleDrawer = (newOpen: boolean) => () => {
+        setOpen(newOpen);
+    };
+
+    const scrollToSection = (sectionId: string) => {
+        const sectionElement = document.getElementById(sectionId);
+        const offset = 128;
+        if (sectionElement) {
+            const targetScroll = sectionElement.offsetTop - offset;
+            sectionElement.scrollIntoView({behavior: 'smooth'});
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth',
+            });
+            setOpen(false);
+        }
+    };
 
   return (
     <div>
@@ -133,21 +138,33 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                 href=""
                 target="_blank"
               >
-                  <RouterLink to={'/signIn'} style={{textDecoration: 'none'}}>
-                      {t('signIn')}
-                  </RouterLink>
+                  {currentUser === null ?
+                      <RouterLink to={'/signIn'} style={{textDecoration: 'none'}}>
+                          {t('signIn')}
+                      </RouterLink> :
+                      currentUser.name}
               </Button>
-              <Button
-                color="primary"
-                variant="outlined"
-                size="small"
-                href=""
-                target="_blank"
-              >
-                  <RouterLink to={'/signUp'} style={{textDecoration: 'none'}}>
-                      {t('signUp')}
-                  </RouterLink>
-              </Button>
+                  {currentUser === null ?
+                      <Button
+                          color="primary"
+                          variant="outlined"
+                          size="small"
+                          href=""
+                          target="_blank"
+                      >
+                          <RouterLink to={'/signUp'} style={{textDecoration: 'none'}}>
+                              {t('signUp')}
+                          </RouterLink>
+                      </Button> :
+                      <Button
+                          variant="text"
+                          onClick={event => {SecurityUtil.logout()}}
+                          size="small"
+                          aria-label="button to toggle theme"
+                          sx={{ minWidth: '32px', height: '32px', p: '4px' }}
+                      >
+                          <LogoutIcon fontSize="small" />
+                      </Button>}
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button

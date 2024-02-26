@@ -19,6 +19,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import "../assets/scss/main.scss";
 import i18n from "../i18n/i18n";
+import SecurityUtil from "../util/SecurityUtil";
 
 function Copyright(props: any) {
     return (
@@ -48,10 +49,9 @@ export default function SignInPage() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        let email = data.get('email')?.toString();
+        let password = data.get('password')?.toString();
+        SecurityUtil.login(email, password)
     };
 
     return (
