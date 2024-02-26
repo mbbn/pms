@@ -1,7 +1,4 @@
 import * as React from 'react';
-import {PaletteMode} from "@mui/material";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
-import getPMSTheme from "../getPMSTheme";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -9,9 +6,7 @@ import i18n from "../i18n/i18n";
 import {Trans} from "react-i18next";
 import Stack from "@mui/material/Stack";
 export default function AboutUs() {
-    const [mode, setMode] = React.useState<PaletteMode>('light');
-    const theme = createTheme(getPMSTheme(mode));
-    const {t, dir, language} = i18n;
+    const {t} = i18n;
 
     return (
         <Stack spacing={2} useFlexGap sx={{width: {xs: '100%', sm: '100%'}}}>

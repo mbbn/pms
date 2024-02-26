@@ -29,7 +29,6 @@ function AppAppBar({mode, toggleColorMode}: AppAppBarProps) {
     const {t} = i18n;
 
     const currentUser = SecurityUtil.currentUser();
-    console.log(currentUser);
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
