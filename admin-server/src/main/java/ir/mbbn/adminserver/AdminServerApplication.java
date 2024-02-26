@@ -1,11 +1,10 @@
 package ir.mbbn.adminserver;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 
-@EnableAdminServer
+//@EnableAdminServer
 @SpringBootApplication
 public class AdminServerApplication {
 

@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
 import "../assets/scss/main.scss";
 import i18n from "../i18n/i18n";
 import SecurityUtil from "../util/SecurityUtil";
+import {FormProvider, useForm} from "react-hook-form";
 
 function Copyright(props: any) {
     return (
@@ -38,6 +39,7 @@ export default function SignInPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
     const theme = createTheme(getPMSTheme(mode));
     const {t, dir, language} = i18n;
+    const methods = useForm();
 
     const cacheRtl = createCache({
         key: 'muirtl',
@@ -89,53 +91,55 @@ export default function SignInPage() {
                             <Typography component="h1" variant="h5">
                                 {t('signIn')}
                             </Typography>
-                            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    name="email"
-                                    label={t('signUp.email')}
-                                    autoComplete="email"
-                                    placeholder="info@example.com"
-                                    helperText={t('signUp.email.help')}
-                                />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="password"
-                                    name="password"
-                                    label={t('signUp.password')}
-                                    helperText={t('signUp.password.help')}
-                                    type="password"
-                                    autoComplete="current-password"
-                                />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label={t('signIn.remember')}
-                                />
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
-                                >{t('signIn')}
-                                </Button>
-                                <Grid container>
-                                    <Grid item xs>
-                                        <Link href="#" variant="body2">
-                                            {t('signIn.forgotPassword')}
-                                        </Link>
+                            <FormProvider {...methods}>
+                                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        name="email"
+                                        label={t('email')}
+                                        autoComplete="email"
+                                        placeholder={t('email.placeholder')}
+                                        helperText={t('email.help')}
+                                    />
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="password"
+                                        name="password"
+                                        label={t('signUp.password')}
+                                        helperText={t('signUp.password.help')}
+                                        type="password"
+                                        autoComplete="current-password"
+                                    />
+                                    <FormControlLabel
+                                        control={<Checkbox value="remember" color="primary" />}
+                                        label={t('signIn.remember')}
+                                    />
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        variant="contained"
+                                        sx={{ mt: 3, mb: 2 }}
+                                    >{t('signIn')}
+                                    </Button>
+                                    <Grid container>
+                                        <Grid item xs>
+                                            <Link href="#" variant="body2">
+                                                {t('signIn.forgotPassword')}
+                                            </Link>
+                                        </Grid>
+                                        <Grid item>
+                                            <Link href="#" variant="body2">
+                                                {t('signIn.dontHaveAccount')}
+                                            </Link>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item>
-                                        <Link href="#" variant="body2">
-                                            {t('signIn.dontHaveAccount')}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
-                            </Box>
+                                </Box>
+                            </FormProvider>
                         </Box>
                         <Copyright sx={{ mt: 5 }} />
                     </Grid>

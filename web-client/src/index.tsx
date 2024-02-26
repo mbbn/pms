@@ -4,6 +4,7 @@ import LandingPage from "./view/LandingPage";
 import {Route, BrowserRouter, Routes} from "react-router-dom";
 import i18n from "./i18n/i18n";
 import UnderConstruct from "./view/UnderConstruct";
+import SignInPage from "./view/SignInPage";
 
 
 const rootElement = document.getElementById('root');
@@ -18,7 +19,7 @@ root.render(
             <Route path={"/"} element={<LandingPage/>}/>
             <Route path={"/admin"} element={<UnderConstruct/>}/>
             <Route path={"/signUp"} element={<UnderConstruct/>}/>
-            <Route path={"/signIn"} element={<UnderConstruct/>}/>
+            <Route path={"/signIn"} element={<SignInPage/>}/>
         </Routes>
     </BrowserRouter>
 );

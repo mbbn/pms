@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: root
+      password: root
   thymeleaf:
     enabled: true
     encoding: UTF-8
@@ -9,6 +13,6 @@ spring:
 
 logging:
   level:
-    root: debug
+    root: info
     sun:
       rmi: error

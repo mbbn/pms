@@ -36,9 +36,9 @@ export default class SecurityUtil {
 
     static logout() {
         let instance = SecurityUtil.INSTANCE;
-        instance.securityService.logout().then(resp => {
+        // instance.securityService.logout().then(resp => {
             localStorage.removeItem(SecurityUtil.INSTANCE._TOKEN)
             window.location.reload();
-        });
+        // });
     }
 }

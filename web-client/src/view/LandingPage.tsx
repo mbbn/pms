@@ -56,7 +56,6 @@ export default function LandingPage() {
             <CssBaseline />
             <AppAppBar mode={mode} toggleColorMode={toggleColorMode}/>
             <Box
-                id="hero"
                 sx={(theme) => ({
                     width: '100%',
                     backgroundImage:
@@ -82,8 +81,8 @@ export default function LandingPage() {
                             mt: {xs: 8, sm: 10},
                         })}
                     >
-                        {cars.map(car =>
-                            <Grid item xs={12} sm={8} md={2}>
+                        {cars.map((car, index) =>
+                            <Grid item xs={12} sm={8} md={2} key={'grid-'+index}>
                                 <Card>
                                     <CardMedia
                                         component="img"

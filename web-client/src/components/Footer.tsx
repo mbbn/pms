@@ -88,10 +88,6 @@ export default function Footer() {
                                 fullWidth
                                 aria-label={t('email.help')}
                                 placeholder={t('email.placeholder')}
-                                inputProps={{
-                                    autocomplete: 'off',
-                                    ariaLabel: t('email.help'),
-                                }}
                             />
                             <Button variant="contained" color="primary" sx={{flexShrink: 0}}>
                                 <Trans i18nKey={'subscribe'}/>
@@ -195,7 +191,7 @@ export default function Footer() {
                         aria-label="X"
                         sx={{alignSelf: 'center'}}
                     >
-                        <WhatsAppIcon  sx={{color: green[500]}}/>
+                        <WhatsAppIcon sx={{color: green[500]}}/>
                     </IconButton>
                     <IconButton
                         color="inherit"

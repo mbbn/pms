@@ -2,10 +2,11 @@ package ir.mbbn.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @ServletComponentScan(basePackages = "ir.mbbn.application.filter")
 public class Application {
 
