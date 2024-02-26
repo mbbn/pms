@@ -20,5 +20,7 @@
   "signIn": "Sign In",
   "signIn.remember": "Remember me",
   "signIn.forgotPassword": "Forgot password?",
-  "signIn.dontHaveAccount": "Don't have an account? Sign Up"
+  "signIn.dontHaveAccount": "Don't have an account? Sign Up",
+  "about.prefixCompanyName": "Industrial Group",
+  "about.companyName": "Kara Cabin"
 }
