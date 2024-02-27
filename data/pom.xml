@@ -12,16 +12,16 @@
 
     <artifactId>data</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <groupId>ir.mbbn</groupId>
+            <artifactId>core</artifactId>
+            <version>${pms.version}</version>
         </dependency>
 
         <dependency>

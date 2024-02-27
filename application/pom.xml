@@ -21,7 +21,7 @@
         <dependency>
             <groupId>ir.mbbn</groupId>
             <artifactId>service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pms.version}</version>
         </dependency>
 
         <dependency>

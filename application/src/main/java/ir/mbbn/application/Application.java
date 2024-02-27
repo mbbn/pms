@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication(scanBasePackages = "ir.mbbn",exclude = SecurityAutoConfiguration.class)
 @ServletComponentScan(basePackages = "ir.mbbn.application.filter")
 public class Application {
 

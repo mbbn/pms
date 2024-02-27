@@ -12,6 +12,7 @@
 
     <artifactId>service</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
     </properties>
@@ -20,7 +21,7 @@
         <dependency>
             <groupId>ir.mbbn</groupId>
             <artifactId>data</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pms.version}</version>
         </dependency>
 
         <dependency>
