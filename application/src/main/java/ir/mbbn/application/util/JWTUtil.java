@@ -1,14 +1,10 @@
-package ir.mbbn.util;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
+package ir.mbbn.application.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.TextCodec;
-import ir.mbbn.model.User;
+
+import java.nio.charset.StandardCharsets;
 
 public class JWTUtil {
     public static final JWTUtil INSTANCE = new JWTUtil();
@@ -25,7 +21,7 @@ public class JWTUtil {
         Claims body = jwtParser.parseClaimsJwt(token).getBody();
     }
 
-    public String createToken(User user) {
+    /*public String createToken(User user) {
         return Jwts.builder()
                 .setIssuer("issuer")
                 .setSubject("subject")
@@ -36,5 +32,5 @@ public class JWTUtil {
                 .signWith(SignatureAlgorithm.HS256,
                         TextCodec.BASE64.decode("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E="))
                 .compact();
-    }
+    }*/
 }

@@ -45,15 +45,13 @@ let cars = [
 
 export default function LandingPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
-    const theme = createTheme(getPMSTheme(mode));
 
     const toggleColorMode = () => {
         setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <div>
             <AppAppBar mode={mode} toggleColorMode={toggleColorMode}/>
             <Box
                 sx={(theme) => ({
@@ -99,6 +97,6 @@ export default function LandingPage() {
                 <Divider/>
                 <Footer/>
             </Box>
-        </ThemeProvider>
+        </div>
     );
 }

@@ -1,7 +1,7 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import {ThemeOptions} from "@mui/material/styles";
 import {alpha, PaletteMode} from "@mui/material";
-import {red} from "@mui/material/colors";
+import {grey, red} from "@mui/material/colors";
 import i18n from "./i18n/i18n";
 
 const {language, dir} = i18n;
@@ -207,7 +207,16 @@ export default function getPMSTheme(mode: PaletteMode): ThemeOptions {
         direction: dir(language),
         ...getDesignTokens(mode),
         components:{
-
+            MuiAccordionSummary:{
+                styleOverrides:{
+                    root: ({theme}) => ({
+                        backgroundColor: grey[200]
+                    }),
+                    content: ({theme}) => ({
+                        alignItems: 'center'
+                    })
+                }
+            },
             MuiTextField: {
                 styleOverrides: {
                     root: ({theme}) => ({

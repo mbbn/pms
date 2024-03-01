@@ -1,0 +1,35 @@
+let fs = require('fs');
+let {globSync} = require('glob');
+let PropertiesReader = require('properties-reader');
+let {mkdirpSync} = require('mkdirp');
+let projectName = process.argv[2];
+
+const getJsonMessages = (resultProps, locale, pattern) => {
+	globSync(pattern)
+		.map((filename) => {
+			const props = PropertiesReader(filename)._properties;
+			filename = filename.toString().substr(String(filename).lastIndexOf('\\') + 1, String(filename).length).replace(locale === 'fa' ? 'Messages.properties' : 'Messages_en.properties', '');
+			for (let key in props) {
+				if (props.hasOwnProperty(key)) {
+					resultProps[filename + '.' + key] = JSON.parse('"' + props[key].replace(/([^\\]|^)\"/g, '$1\\"') + '"');
+				}
+			}
+		});
+};
+
+const jsonMessagesFa = {};
+getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/java/**/*Messages.properties');
+getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/resources/**/*Messages.properties');
+getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/ts/**/*Messages.properties');
+getJsonMessages(jsonMessagesFa, 'fa', `../${projectName}/src/main/resources/**/*Messages.properties`);
+getJsonMessages(jsonMessagesFa, 'fa', `../${projectName}/build/i18n/**/*Messages.properties`);
+const jsonMessagesEn = {};
+getJsonMessages(jsonMessagesEn, 'en', '../common/src/main/java/**/*Messages_en.properties');
+getJsonMessages(jsonMessagesEn, 'en', '../common/src/main/resources/**/*Messages_en.properties');
+getJsonMessages(jsonMessagesEn, 'en', '../common/src/main/ts/**/*Messages_en.properties');
+getJsonMessages(jsonMessagesEn, 'en', `../${projectName}/src/main/java/**/*Messages_en.properties`);
+getJsonMessages(jsonMessagesFa, 'en', `../${projectName}/build/i18n/**/*Messages_en.properties`);
+
+const outputLanguageDataDir = './build/';
+mkdirpSync(outputLanguageDataDir);
+fs.writeFileSync(outputLanguageDataDir + 'messages.json', `{ "fa": ${JSON.stringify(jsonMessagesFa, null, 2)} ,"en": ${JSON.stringify(jsonMessagesEn, null, 2)} }`);

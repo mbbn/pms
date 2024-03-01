@@ -1,7 +1,7 @@
 package ir.mbbn.application.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ir.mbbn.util.JWTUtil;
+import ir.mbbn.application.util.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

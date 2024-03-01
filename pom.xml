@@ -37,7 +37,7 @@
 
         <module>service</module>
         <module>data</module>
-        <module>core</module>
+        <module>common</module>
     </modules>
 
     <dependencyManagement>

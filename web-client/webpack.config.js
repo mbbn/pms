@@ -81,7 +81,7 @@ module.exports = function (_env, argv){
         ],
         devServer: {
             static: path.join(__dirname, 'dist'),
-            compress: true,
+            compress: false,
             port: 4000,
             hot: true,
             proxy:{

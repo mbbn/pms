@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"outDir": "build/dist",
+		"baseUrl": ".",
+		"module": "esnext",
+		"target": "ES5",
+		"experimentalDecorators": true,
+		"lib": ["es2017", "dom"],
+		"sourceMap": true,
+		"allowJs": true,
+		"checkJs": false,
+		"noEmitOnError": true,
+		"jsx": "react",
+		"moduleResolution": "Node",
+		"rootDirs": ["src/main/ts", "../common/src/main/ts"],
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": false,
+		"strictNullChecks": false,
+		//"suppressImplicitAnyIndexErrors": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"skipLibCheck": true,
+		"paths": {
+			"@common/*": ["../common/src/main/ts/*"]
+		}
+	},
+	"exclude": [
+		"src/main/java",
+		"src/main/webapp",
+		"node_modules",
+		"build",
+		"webpack.config.js"
+	]
+}

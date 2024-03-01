@@ -1,8 +1,18 @@
 spring:
-  security:
-    user:
-      name: root
-      password: root
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: true
+  sql:
+    init:
+      mode: embedded
+      continue-on-error: false
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./h2
+#    username: sa
+#    password:
   thymeleaf:
     enabled: true
     encoding: UTF-8
@@ -10,7 +20,11 @@ spring:
     check-template: true
     prefix: classpath:/templates/
     suffix: .html
-
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true
 logging:
   level:
     root: info

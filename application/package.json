@@ -1,0 +1,30 @@
+{
+  "name": "production-management-system",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Open Source Project for Iranian Production",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mbbn/pms.git"
+  },
+  "keywords": [],
+  "author": "Mohammad Biabani",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mbbn/pms/issues"
+  },
+  "homepage": "https://github.com/mbbn/pms",
+  "main": "src/main/ts/index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack-build": "npm run i18n && node --max_old_space_size=2048 ../node_modules/webpack/bin/webpack.js --config webpack.config.js --env projectDir=application --mode production",
+    "webpack-dev-server": "npm run i18n && node --max_old_space_size=2048 ../node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.js --env projectDir=application --mode development --open",
+    "i18n": "node ../common/src/main/ts/i18n/MessageConverter.ts application"
+  },
+  "dependencies": {
+    "common": "file:./../common"
+  },
+  "devDependencies": {
+    "common": "file:./../common"
+  }
+}

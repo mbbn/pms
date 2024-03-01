@@ -1,8 +1,6 @@
 package ir.mbbn.application.web;
 
 import ir.mbbn.application.web.dto.LoginRequestDTO;
-import ir.mbbn.model.User;
-import ir.mbbn.util.JWTUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,10 +27,11 @@ public class AuthenticationController {
         try {
             Authentication authentication =
                     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestDTO.getUsername(), requestDTO.getPassword()));
-            String email = authentication.getName();
-            User user = new User();
-            String token = JWTUtil.INSTANCE.createToken(user);
-            return ResponseEntity.ok(token);
+            String mobile = authentication.getName();
+//            User user = new User();
+//            String token = JWTUtil.INSTANCE.createToken(user);
+//            return ResponseEntity.ok(token);
+            return null;
         }catch (BadCredentialsException e){
 //            ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST,"Invalid username or password");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
