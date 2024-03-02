@@ -17,7 +17,7 @@ export default class BaseService {
         }).then((response)=>response.json());
     }
 
-    public static loadResource(path: string){
-
+    public static loadResource(path: string): Promise<string> {
+        return fetch(path, {method: 'GET', cache: 'no-cache'}).then((response) => response.text());
     }
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import EmptyModel from "@common/model/EmptyModel";
 import BaseView, {ViewState} from "@common/view/BaseView";
+import BaseService from "@common/service/BaseService";
 import {Box, Grid, Stack, Typography } from '@mui/material';
 
 interface AboutUsViewState {
@@ -17,13 +18,11 @@ export default class AboutUsView extends BaseView<EmptyModel, string> {
     }
 
     componentDidMount() {
-        fetch("./html/about.html", {method: 'GET', cache: 'no-cache'}).then((response)=>response.text()).then(
-            (htmlText)=>{
-                this.setState({
-                    htmlText: htmlText
-                })
-            }
-        )
+        BaseService.loadResource("./html/about.html").then((htmlText)=>{
+            this.setState({
+                htmlText: htmlText
+            })
+        });
     }
 
     renderContent(): React.ReactNode {
