@@ -1,9 +1,7 @@
 import * as React from 'react';
 import EmptyModel from "@common/model/EmptyModel";
 import BaseView, {ViewState} from "@common/view/BaseView";
-import ClientMessagesUtil from "@common/util/ClientMessagesUtil";
 import {Box, Grid, Stack, Typography } from '@mui/material';
-import * as console from "console";
 
 interface AboutUsViewState {
     htmlText: string;
