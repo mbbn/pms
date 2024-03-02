@@ -107,6 +107,7 @@ module.exports = (env, argv) => ({
             patterns: [
                 { from: "src/main/resources/static/img", to: "img" },
                 { from: "src/main/resources/static/fav", to: "favicons" },
+                { from: "src/main/resources/static/html", to: "html" },
                 /*{from: './src/main/webapp'},*/
                 /*{from: '../common/src/main/webapp'}*/
             ]

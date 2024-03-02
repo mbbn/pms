@@ -3,7 +3,7 @@ import {ThemeOptions} from "@mui/material/styles";
 import {alpha, PaletteMode} from "@mui/material";
 import {grey, red} from "@mui/material/colors";
 
-export const defaultFontFamily: string = 'IRANSans';
+export const defaultFontFamily: string = 'Vazir';
 
 declare module '@mui/material/styles/createPalette' {
     interface ColorRange {

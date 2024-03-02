@@ -12,6 +12,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import AbstractViewName from "@common/view/AbstractViewName";
 import NavigationManager from "@common/view/NavigationManager";
 import i18n from "@common/i18n/i18n";
+import "@common/assets/scss/main.scss";
 export interface BaseEntryPointState {
     uiTheme: {}
 }

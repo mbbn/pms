@@ -1,5 +1,7 @@
 export default class StringUtil{
 
+    public static readonly DOT = '.';
+
     static hasText(object: any): boolean {
         return object != null && String(object).trim().length > 0;
     }

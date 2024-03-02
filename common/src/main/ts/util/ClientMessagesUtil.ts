@@ -9,16 +9,9 @@ import Locale from "@common/locale/Locale";
 export default class ClientMessagesUtil {
 
     static readonly BASE_MESSAGES = 'Base';
-    static readonly COMMON_MESSAGES = 'Common';
 
     static getBaseMessage(key: string, args?: {}): string {
-        // return ClientMessagesUtil.intl().formatMessage({id: ClientMessagesUtil.BASE_MESSAGES + '.' + key}, args);
-        return '';
-    }
-
-    static getCommonMessage(key: string, args?: {}): string {
-        // return ClientMessagesUtil.intl().formatMessage({id: ClientMessagesUtil.COMMON_MESSAGES + '.' + key}, args);
-        return '';
+        return this.getMessageByFullKey(ClientMessagesUtil.BASE_MESSAGES + StringUtil.DOT + key, args)
     }
 
     /**
@@ -29,7 +22,9 @@ export default class ClientMessagesUtil {
      * @returns formatted messasge
      */
     static getMessage<M extends BaseModel<any>>(messagesNameOrModelOrModelClass: string | M | { new(): M; }, key: string, args?: {}): string {
-        console.log(messagesNameOrModelOrModelClass, key, args);
+        if(typeof messagesNameOrModelOrModelClass === 'string'){
+            return this.getMessageByFullKey(messagesNameOrModelOrModelClass + StringUtil.DOT + key, args);
+        }
         return '';
     }
 
