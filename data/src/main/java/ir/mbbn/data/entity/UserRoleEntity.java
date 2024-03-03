@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
         @UniqueConstraint(name = "UK_USER_ROLE", columnNames = "USER_ID,ROLE_ID")
 })
 @Data
-public class UserRoleEntity {
+public class UserRoleEntity extends BaseEntity<Integer>{
 
     @Id
     @Column(name = "USER_ROLE_ID")

@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
         @UniqueConstraint(name = "UK_AUTHORITY", columnNames = "AUTHORITY")
 })
 @Data
-public class AuthorityEntity implements GrantedAuthority {
+public class AuthorityEntity extends BaseEntity<String> implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

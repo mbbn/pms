@@ -1,11 +1,9 @@
 package ir.mbbn.application.config;
 
-import ir.mbbn.CustomUserDetailsService;
+import ir.mbbn.service.CustomUserDetailsService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -42,7 +40,7 @@ public class SecurityConfiguration  {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring()
                 .requestMatchers("/h2-console/**",
-                        "api/v1/auth");
+                        "/api/v1/**");
     }
 
     @Bean

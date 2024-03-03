@@ -1,4 +1,4 @@
-package ir.mbbn;
+package ir.mbbn.service;
 
 import ir.mbbn.data.entity.UserEntity;
 import ir.mbbn.data.repository.UserRepository;

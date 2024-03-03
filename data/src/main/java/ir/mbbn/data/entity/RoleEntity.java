@@ -10,7 +10,7 @@ import java.util.Set;
         @UniqueConstraint(name = "UK_ROLE_NAME", columnNames = "NAME")
 })
 @Data
-public class RoleEntity {
+public class RoleEntity extends BaseEntity<String>{
 
     @Id
     @Column(name = "ROLE_ID")

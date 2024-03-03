@@ -25,8 +25,13 @@ spring:
       ddl-auto: update
     show-sql: true
     defer-datasource-initialization: true
+
 logging:
   level:
     root: info
     sun:
       rmi: error
+
+resource:
+  bundle:
+    classpath: classpath:BaseMessages, classpath:CommonMessages

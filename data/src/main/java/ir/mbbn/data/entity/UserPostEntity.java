@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
         @UniqueConstraint(name = "UK_USER_POST", columnNames = "USER_ID,POST_ID")
 })
 @Data
-public class UserPostEntity {
+public class UserPostEntity extends BaseEntity<Integer>{
 
     @Id
     @Column(name = "USER_POST_ID")

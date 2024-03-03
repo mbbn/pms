@@ -10,7 +10,8 @@ import java.util.Set;
         @UniqueConstraint(name = "UK_POST_NAME", columnNames = "NAME")
 })
 @Data
-public class PostEntity {
+public class PostEntity extends BaseEntity<String>{
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "POST_ID", length = 36)

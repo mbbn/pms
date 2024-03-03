@@ -1,5 +1,6 @@
 package ir.mbbn.data.entity;
 
+import ir.mbbn.common.type.RestRepository;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.CredentialsContainer;
@@ -14,12 +15,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
+@RestRepository
 @Table(name = "PMS_USER", uniqueConstraints = {
         @UniqueConstraint(name = "UK_USER_EMAIL", columnNames = "EMAIL"),
         @UniqueConstraint(name = "UK_USER_MOBILE", columnNames = "MOBILE")
 })
 @Data
-public class UserEntity implements UserDetails, CredentialsContainer {
+public class UserEntity extends BaseEntity<String> implements UserDetails, CredentialsContainer {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
