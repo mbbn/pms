@@ -40,7 +40,6 @@ public class SecurityConfiguration  {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring()
                 .requestMatchers("/h2-console/**",
-                        "/api/v1/**",
                         "/**");
     }
 

@@ -1,8 +1,8 @@
 package ir.mbbn.data.entity;
 
-import ir.mbbn.common.type.RestRepository;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
@@ -14,13 +14,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Data
 @Entity
-@RestRepository
 @Table(name = "PMS_USER", uniqueConstraints = {
         @UniqueConstraint(name = "UK_USER_EMAIL", columnNames = "EMAIL"),
         @UniqueConstraint(name = "UK_USER_MOBILE", columnNames = "MOBILE")
 })
-@Data
+@EqualsAndHashCode(callSuper = true)
 public class UserEntity extends BaseEntity<String> implements UserDetails, CredentialsContainer {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;

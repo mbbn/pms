@@ -1,12 +1,12 @@
-package ir.mbbn.service;
+package ir.mbbn.data.repository;
 
 import ir.mbbn.data.entity.BaseEntity;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class RepositoryService {
+@Component
+public class RepositoryDAO {
 
     @Resource
     private EntityManager entityManager;

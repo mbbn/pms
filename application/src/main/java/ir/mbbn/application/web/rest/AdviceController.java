@@ -18,7 +18,6 @@ import java.util.Locale;
 @ControllerAdvice
 public class AdviceController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Resource
     private MessageSource messageSource;
 

@@ -2,6 +2,7 @@ package ir.mbbn.service;
 
 import ir.mbbn.data.entity.UserEntity;
 import ir.mbbn.data.repository.UserRepository;
+import jakarta.annotation.Resource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,11 +15,8 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
-
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Resource
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String mobile) throws UsernameNotFoundException {
