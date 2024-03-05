@@ -1,12 +1,13 @@
-export default class BaseService {
-    get(path: string): Promise<Response> {
+export abstract class BaseService<MODEL> {
+
+    public get(path: string): Promise<Response> {
         return fetch(path, {
             method: 'GET',
             cache: 'no-cache'
         }).then((response)=>response.json());
     }
 
-    post(path: string, body: any): Promise<Response> {
+    public post(path: string, body: any): Promise<Response> {
         return fetch(path, {
             method: 'POST',
             cache: 'no-cache',
@@ -16,6 +17,8 @@ export default class BaseService {
             }
         }).then((response)=>response.json());
     }
+
+    protected abstract createModel(props?:any);
 
     public static loadResource(path: string): Promise<string> {
         return fetch(path, {method: 'GET', cache: 'no-cache'}).then((response) => response.text());

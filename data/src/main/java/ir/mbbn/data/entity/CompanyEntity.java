@@ -25,6 +25,6 @@ public class CompanyEntity extends BaseEntity<String>{
     @Column(name = "PERSIAN_NAME", nullable = false)
     private String persianName;
 
-    @Column(name = "ABOUT")
+    @Column(name = "ABOUT", length = 2000)
     private String about;
 }

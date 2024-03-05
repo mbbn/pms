@@ -1,8 +1,11 @@
 import * as React from 'react';
 import EmptyModel from "@common/model/EmptyModel";
 import BaseView, {ViewState} from "@common/view/BaseView";
-import BaseService from "@common/service/BaseService";
+import {BaseService} from "@common/service/BaseService";
 import {Box, Grid, Stack, Typography } from '@mui/material';
+import CompanyService from "@common/service/CompanyService";
+import React from "react";
+import CompanyModel from "@common/model/CompanyModel";
 
 interface AboutUsViewState {
     htmlText: string;
@@ -17,7 +20,12 @@ export default class AboutUsView extends BaseView<EmptyModel, string> {
         };
     }
 
+    constructor(props: any, context: any) {
+        super(props, context, new CompanyService());
+    }
+
     componentDidMount() {
+        this.service.()
         BaseService.loadResource("./html/about.html").then((htmlText)=>{
             this.setState({
                 htmlText: htmlText

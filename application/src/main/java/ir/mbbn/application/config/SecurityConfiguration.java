@@ -4,6 +4,7 @@ import ir.mbbn.service.CustomUserDetailsService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AnonymousAuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -32,6 +33,7 @@ public class SecurityConfiguration  {
     @Bean
     public ProviderManager authManagerBean(HttpSecurity security) throws Exception {
         return (ProviderManager) security.getSharedObject(AuthenticationManagerBuilder.class)
+                .authenticationProvider(new AnonymousAuthenticationProvider("key"))
                 .authenticationProvider(authProvider()).
                 build();
     }
@@ -39,14 +41,14 @@ public class SecurityConfiguration  {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring()
-                .requestMatchers("/h2-console/**",
-                        "/**");
+                .requestMatchers("/h2-console/**");
     }
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .requestMatchers("/api/v1/company/").anonymous()
                 .requestMatchers("api/v1/auth").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
