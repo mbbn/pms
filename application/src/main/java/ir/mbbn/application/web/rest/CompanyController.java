@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(CrudApi.BASE_API_PATH + "/company")
+@RequestMapping(CrudApi.BASE_API_PATH + "/Company")
 public class CompanyController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -3,7 +3,6 @@ import {Formik} from 'formik';
 import ClientMessagesUtil from "../util/ClientMessagesUtil";
 import BaseModel from "@common/model/BaseModel";
 import {BaseService} from "@common/service/BaseService";
-import React from "react";
 
 export interface ViewState<M extends BaseModel<I>, I> {
     model: M;
@@ -14,7 +13,7 @@ export default abstract class BaseView<M extends BaseModel<I>, I> extends React.
     // state: any = this.getHistoryState() ? this.getHistoryState() : this.getInitialState();
     state:any = this.getInitialState();
     setStateIsInProgress = false; // If true, 'formik.state.values' is stale and 'state.model' should be used.
-    service: BaseService<M>;
+    service: BaseService<M, I>;
 
     getInitialState(): ViewState<M, I> {
         return {
@@ -25,7 +24,7 @@ export default abstract class BaseView<M extends BaseModel<I>, I> extends React.
     abstract renderContent(): React.ReactNode;
 
     abstract createModel(props?: any): M;
-    constructor(props: any, context: any, service: BaseService<M>) {
+    constructor(props: any, context: any, service: BaseService<M, I>) {
         super(props, context);
         this.service = service;
     }

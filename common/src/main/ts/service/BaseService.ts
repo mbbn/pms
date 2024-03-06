@@ -1,13 +1,22 @@
-export abstract class BaseService<MODEL> {
+import BaseModel from "@common/model/BaseModel";
 
-    public get(path: string): Promise<Response> {
+export abstract class BaseService<MODEL extends BaseModel<IdType>, IdType> {
+    protected load(id: IdType): Promise<MODEL> {
+        let entityName = this.createModel().getEntityName();
+        return this.get("/" + entityName + "/load/" + id)
+            .then(response => {
+                return response.json();
+            });
+    }
+
+    protected get(path: string): Promise<Response> {
         return fetch(path, {
             method: 'GET',
             cache: 'no-cache'
         }).then((response)=>response.json());
     }
 
-    public post(path: string, body: any): Promise<Response> {
+    private post(path: string, body: any): Promise<Response> {
         return fetch(path, {
             method: 'POST',
             cache: 'no-cache',
@@ -18,7 +27,7 @@ export abstract class BaseService<MODEL> {
         }).then((response)=>response.json());
     }
 
-    protected abstract createModel(props?:any);
+    protected abstract createModel(props?:any):MODEL;
 
     public static loadResource(path: string): Promise<string> {
         return fetch(path, {method: 'GET', cache: 'no-cache'}).then((response) => response.text());

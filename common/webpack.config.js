@@ -130,9 +130,16 @@ function getSpecialParams(mode) {
                 compress: false,
                 hot: true, // HotModuleReplacement
                 open: true, // Opens browser
-                host: '127.0.0.1',
+                host: 'localhost',
                 port: 4000,
-                historyApiFallback: true // If page not found, loads index.html.
+                historyApiFallback: true, // If page not found, loads index.html.
+                proxy: {
+                    '/api':{
+                        target: 'http://localhost:8080',
+                        // router: ()=> ''
+                        logLevel: 'debug'
+                    }
+                }
             },
 
             // Enable source-map for debugging webpack's output.
