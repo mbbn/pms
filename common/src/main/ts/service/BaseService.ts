@@ -1,19 +1,13 @@
 import BaseModel from "@common/model/BaseModel";
+import {useEffect} from "react";
 
 export abstract class BaseService<MODEL extends BaseModel<IdType>, IdType> {
-    protected load(id: IdType): Promise<MODEL> {
-        let entityName = this.createModel().getEntityName();
-        return this.get("/" + entityName + "/load/" + id)
-            .then(response => {
-                return response.json();
-            });
-    }
 
-    protected get(path: string): Promise<Response> {
-        return fetch(path, {
+    protected async get(path: string): Promise<MODEL> {
+        return await fetch(path, {
             method: 'GET',
             cache: 'no-cache'
-        }).then((response)=>response.json());
+        }).then((response) => response.json());
     }
 
     private post(path: string, body: any): Promise<Response> {

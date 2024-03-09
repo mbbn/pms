@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import {prefixer} from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import getContext from "@common/entrypoint/ContextManager";
@@ -7,14 +7,22 @@ import createCache from "@emotion/cache";
 import {CacheProvider} from "@emotion/react";
 import {ThemeProvider, AppBar, Container, Toolbar, Box} from "@mui/material";
 import Locale from "@common/locale/Locale";
-import {HashRouter} from "react-router-dom";
+import {HashRouter, Routes, Route} from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import AbstractViewName from "@common/view/AbstractViewName";
-import NavigationManager from "@common/view/NavigationManager";
 import i18n from "@common/i18n/i18n";
 import "@common/assets/scss/main.scss";
+import {AuthProvider} from "@common/hooks/AuthProvider";
+import UserModel from "@common/model/UserModel";
+import SecurityService from "@common/service/SecurityService";
+import UserService from "@common/service/UserService";
+import {useState} from "react";
 export interface BaseEntryPointState {
-    uiTheme: {}
+    currenUser: any;
+    uiTheme: {
+        direction: 'rtl'|'ltr',
+        mode: 'light' | 'dark'
+    }
 }
 export default abstract class BaseEntryPoint extends React.Component<any, any> {
 
@@ -22,27 +30,34 @@ export default abstract class BaseEntryPoint extends React.Component<any, any> {
 
     static instance;
 
-    state: any = this.getInitialState();
-
-    constructor(props: any, context: any) {
-        super(props, context);
-        BaseEntryPoint.instance = this;
-    }
+    state: Readonly<BaseEntryPointState> = this.getInitialState();
 
     getInitialState(): BaseEntryPointState {
         let i18n = this.setI18n(Locale.FA);
+        const [currentUser, setCurrentUser] = useState<UserModel>();
+        let userService = new UserService();
+        userService.currentUser(user => {
+            setCurrentUser(user);
+        });
         return {
+            currenUser: currentUser,
             uiTheme: {
                 direction: i18n.dir(i18n.language),
                 mode: 'light'
             }
         };
     }
+    constructor(props: any, context: any) {
+        super(props, context);
+        BaseEntryPoint.instance = this;
+    }
     static render(component: any): void {
-        ReactDOM.render(component, document.getElementById(BaseEntryPoint.ROOT_DIV_ID));
+        const rootElement = document.getElementById(BaseEntryPoint.ROOT_DIV_ID);
+        const root = createRoot(rootElement);
+        root.render(component);
     }
     render() {
-        const {uiTheme} = this.state;
+        const {uiTheme, currenUser} = this.state;
         const styleContext = getContext(uiTheme);
         const cacheRtl = createCache({
             key: 'muirtl',
@@ -52,7 +67,20 @@ export default abstract class BaseEntryPoint extends React.Component<any, any> {
             key: 'mui'
         });
         let direction = this.state.uiTheme.direction;
-        return (<CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>
+        return <AuthProvider currentUser={currenUser}>
+            <CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>
+                <ThemeProvider theme={styleContext.theme}>
+                    <CssBaseline/>
+                    <HashRouter>
+                        <Routes >
+                            <Route path="/" element={<div>ssss</div>}/>
+                        </Routes>
+                    </HashRouter>
+                </ThemeProvider>
+            </CacheProvider>
+        </AuthProvider>
+
+        /*return (<CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>
             <ThemeProvider theme={styleContext.theme}>
                 <CssBaseline/>
                 <HashRouter>
@@ -140,7 +168,7 @@ export default abstract class BaseEntryPoint extends React.Component<any, any> {
                     </Box>
                 </HashRouter>
             </ThemeProvider>
-        </CacheProvider>);
+        </CacheProvider>);*/
     }
 
     abstract getMessagesJson(): any;

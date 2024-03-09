@@ -2,13 +2,14 @@ import CompanyModel from "@common/model/CompanyModel";
 import {BaseService} from "@common/service/BaseService";
 
 export default class CompanyService extends BaseService<CompanyModel, string>{
-    protected createModel(props?: any) {
-        return  new CompanyModel(props);
+
+    public async currentCompany(): Promise<CompanyModel> {
+        let entityName = this.createModel().getEntityName();
+        let company = await this.get("/api/v1/" + entityName + "/");
+        return this.createModel(company);
     }
 
-    public currentCompany(): Promise<CompanyModel> {
-        let entityName = this.createModel().getEntityName();
-        return this.get("/api/v1/" + entityName + "/")
-            .then(company => this.createModel(company));
+    protected createModel(props?: any) {
+        return  new CompanyModel(props);
     }
 }

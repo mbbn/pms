@@ -2,14 +2,18 @@ import * as React from 'react';
 import AbstractViewName from '@common/view/AbstractViewName';
 import BaseView from '@common/view/BaseView';
 import ViewContainer from "@common/view/ViewContainer";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useRoutes} from "react-router-dom";
 
 export interface NavigationManagerProps {
 	firstViewName: AbstractViewName;
 	firstViewParams?: {};
 }
 
-export default class NavigationManager extends React.Component<NavigationManagerProps> {
+export interface NavigationManagerState {
+
+}
+
+export default class NavigationManager extends React.Component<NavigationManagerProps, NavigationManagerState> {
 
 	static instance;
 	currentView: BaseView<any, any>;

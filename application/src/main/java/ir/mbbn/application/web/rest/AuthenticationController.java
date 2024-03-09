@@ -1,5 +1,8 @@
 package ir.mbbn.application.web.rest;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.TextCodec;
 import ir.mbbn.application.web.dto.LoginRequestDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -44,5 +49,21 @@ public class AuthenticationController {
     @GetMapping("/logout")
     public ResponseEntity<Void> logout() {
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/currentUser")
+    public ResponseEntity<String> currentUser() {
+        String jwt = Jwts.builder()
+                .setIssuer("issuer")
+                .setSubject("subject")
+                .claim("firstName", "محمد")
+                .claim("lastName", "بیابانی")
+                .claim("authorities", "admin,product.read")
+                .setIssuedAt(new Date())
+                .setExpiration(new Date())
+                .signWith(SignatureAlgorithm.HS256,
+                        TextCodec.BASE64.decode("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E="))
+                .compact();
+        return ResponseEntity.ok(jwt);
     }
 }
