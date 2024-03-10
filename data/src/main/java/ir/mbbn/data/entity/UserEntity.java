@@ -91,7 +91,7 @@ public class UserEntity extends BaseEntity<String> implements UserDetails, Crede
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return locked== null || !locked;
     }
 
     @Override

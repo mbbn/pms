@@ -1,4 +1,2 @@
-import * as React from 'react';
-import AppEntryPoint from "./AppEntryPoint";
-
-AppEntryPoint.render(<AppEntryPoint/>);
+import {render} from "./AppEntryPoint";
+render();
