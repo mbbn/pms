@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LoginRequestDTO extends BaseDTO {
+public class LoginRequestDTO extends BaseDTO<String> {
 
     @JsonProperty("username")
     private String username;
