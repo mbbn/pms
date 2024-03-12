@@ -1,19 +1,19 @@
 package ir.mbbn.service;
 
-import ir.mbbn.data.entity.CompanyEntity;
-import ir.mbbn.data.entity.UserEntity;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import ir.mbbn.data.entity.*;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED)
 public interface EntityMapper {
     EntityMapper mapper = Mappers.getMapper(EntityMapper.class);
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     @Mapping(target = "mobile", source = "mobile")
+    @Mapping(target = "enabled", source = "enabled")
+    @Mapping(target = "roles", source = "roles")
+    @Mapping(target = "posts", source = "posts")
     UserEntity convert(UserEntity entity);
 
     @BeanMapping(ignoreByDefault = true)

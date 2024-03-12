@@ -1,6 +1,5 @@
-import type {} from '@mui/material/themeCssVarsAugmentation';
 import {ThemeOptions} from "@mui/material/styles";
-import {alpha, PaletteMode} from "@mui/material";
+import {alpha, Direction, PaletteMode} from "@mui/material";
 import {grey, red} from "@mui/material/colors";
 
 export const defaultFontFamily: string = 'Vazir';
@@ -21,7 +20,6 @@ declare module '@mui/material/styles/createPalette' {
     interface PaletteColor extends ColorRange {
     }
 }
-
 export const brand = {
     50: '#F0F7FF',
     100: '#CEE5FD',
@@ -34,7 +32,6 @@ export const brand = {
     800: '#02294F',
     900: '#021F3B',
 };
-
 export const secondary = {
     50: '#F9F0FF',
     100: '#E9CEFD',
@@ -47,7 +44,6 @@ export const secondary = {
     800: '#2F024F',
     900: '#23023B',
 };
-
 export const gray = {
     50: '#FBFCFE',
     100: '#EAF0F5',
@@ -60,7 +56,6 @@ export const gray = {
     800: '#131B20',
     900: '#090E10',
 };
-
 export const green = {
     50: '#F6FEF6',
     100: '#E3FBE3',
@@ -73,7 +68,6 @@ export const green = {
     800: '#042F04',
     900: '#021D02',
 };
-
 const getDesignTokens = (mode: PaletteMode) => ({
     palette: {
         mode,
@@ -201,29 +195,33 @@ const getDesignTokens = (mode: PaletteMode) => ({
         }
     }
 })
-
-export default function getDefaultTheme(themeOption): ThemeOptions {
+export function defaultThemeOptions(dir: Direction, mode: PaletteMode): ThemeOptions {
     return {
-        ...getDesignTokens(themeOption.mode),
-        direction: themeOption.direction,
+        ...getDesignTokens(mode),
+        direction: dir,
         components:{
-            MuiAccordionSummary:{
+            MuiAppBar: {
                 styleOverrides:{
                     root: ({theme}) => ({
-                        backgroundColor: grey[200]
-                    }),
-                    content: ({theme}) => ({
-                        alignItems: 'center'
                     })
-                }
-            },
-            MuiTextField: {
-                styleOverrides: {
-                    root: ({theme}) => ({
-
-                    })
+                },
+                defaultProps: {
+                    position: 'fixed',
+                    sx:{
+                        boxShadow: 0,
+                        // bgcolor: 'transparent',
+                        backgroundImage: 'none',
+                        mt: 2,
+                    }
                 }
             }
         }
-    }
-};
+    };
+}
+
+export function adminThemeOptions(dir: Direction, mode: PaletteMode): ThemeOptions {
+    return {
+        ...getDesignTokens(mode),
+        direction: dir
+    };
+}

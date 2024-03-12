@@ -1,10 +1,12 @@
-import {render as renderRoot} from "@common/entrypoint/BaseEntryPoint";
+import * as React from 'react';
+import {AuthProvider} from "@common/hooks/AuthProvider";
+import {AppProvider} from "@common/entrypoint/BaseEntryPoint";
 
-function getMessagesJson(){
-    return require('../../../build/messages.json');
-}
+const App = () => {
+    let messagesJson = require('../../../build/messages.json');
+    return <AuthProvider>
+        <AppProvider messagesJson={messagesJson}/>
+    </AuthProvider>;
+};
+export default App
 
-export function render() {
-    let messagesJson = getMessagesJson();
-    renderRoot(messagesJson);
-}

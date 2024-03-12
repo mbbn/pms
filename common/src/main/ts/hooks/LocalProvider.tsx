@@ -7,20 +7,22 @@ import i18n from "i18next";
 import {initReactI18next} from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Locale from "@common/locale/Locale";
-import {useApp} from "@common/entrypoint/BaseEntryPoint";
+import {useState} from "react";
+import {Direction} from "@mui/material";
 
 interface LocalProviderProps{
-    lang: 'fa'|'en';
+    lang: string;
     messages: {};
     children: any;
 }
 interface LocalContextValueType {
-    lang?: 'fa'|'en';
+    lang?: string;
+    dir?: Direction;
     messages?: {};
 }
 const LocalContext = React.createContext<LocalContextValueType>({});
 
-function initLocalization(messages: {}, lang: 'fa'|'en') {
+function initLocalization(messages: {}, lang: string) {
     // import Backend from "i18next-http-backend";
     // import LanguageDetector from "i18next-browser-languagedetector";
     // don't want to use this?
@@ -88,7 +90,8 @@ function initLocalization(messages: {}, lang: 'fa'|'en') {
 
 export const LocalProvider = ({messages, lang, children}: LocalProviderProps) => {
     let i18n = initLocalization(messages, lang);
-    document.body.dir = i18n.dir(i18n.language);
+    const [direction, setDirection] = useState(i18n.dir(i18n.language));
+    document.body.dir = direction;
     const cacheRtl = createCache({
         key: 'muirtl',
         stylisPlugins: [prefixer, rtlPlugin],
@@ -96,12 +99,15 @@ export const LocalProvider = ({messages, lang, children}: LocalProviderProps) =>
     const cacheLtr = createCache({
         key: 'mui'
     });
-    let direction = 'rtl';
-    const defaultLocalContext:LocalContextValueType = {
-        lang: "fa",
-        messages: messages
-    }
-    return <LocalContext.Provider value={defaultLocalContext}><CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>{children}</CacheProvider></LocalContext.Provider>
+    const value = React.useMemo(
+        () => ({
+            lang: i18n.language,
+            dir: direction,
+            messages: messages
+        }),
+        [setDirection]
+    );
+    return <LocalContext.Provider value={value}><CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>{children}</CacheProvider></LocalContext.Provider>
 }
 
 export const useLocal = () => {

@@ -10,7 +10,7 @@
 		"allowJs": true,
 		"checkJs": false,
 		"noEmitOnError": true,
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"moduleResolution": "Node",
 		"rootDirs": ["src/main/ts", "../common/src/main/ts"],
 		"forceConsistentCasingInFileNames": true,

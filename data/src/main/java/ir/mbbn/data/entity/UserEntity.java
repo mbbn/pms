@@ -1,5 +1,7 @@
 package ir.mbbn.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,24 +29,33 @@ public class UserEntity extends BaseEntity<String> implements UserDetails, Crede
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JsonProperty("id")
     @Column(name = "USER_ID", length = 36)
     private String id;
+    @JsonProperty("mobile")
     @Column(name = "MOBILE", nullable = false)
-    private Integer mobile;
+    private Long mobile;
+    @JsonIgnore
     @Column(name = "PASSWORD", nullable = false)
     private String password;
+    @JsonProperty("enabled")
     @Column(name = "ENABLED", nullable = false)
     private Boolean enabled;
+    @JsonIgnore
     @Column(name = "LOCKED", nullable = false)
     private Boolean locked;
+    @JsonIgnore
     @Column(name = "CHANGE_PASSWORD_TIME")
     private LocalDateTime changePasswordTime;
+    @JsonIgnore
     @Column(name = "EXPIRE_AT")
     private LocalDateTime expireAt;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_USER_POST_USER_ID"))
     private Set<UserPostEntity> posts;
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_USER_ROLE_USER_ID"))
     private Set<UserRoleEntity> roles;
@@ -55,6 +66,7 @@ public class UserEntity extends BaseEntity<String> implements UserDetails, Crede
     }
 
     @Override
+    @JsonProperty("authorities")
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<RoleEntity> userRoles;
         if(roles != null && !roles.isEmpty()){
@@ -77,6 +89,7 @@ public class UserEntity extends BaseEntity<String> implements UserDetails, Crede
     }
 
     @Override
+    @JsonProperty("username")
     public String getUsername() {
         if(mobile != null){
             return mobile.toString();
