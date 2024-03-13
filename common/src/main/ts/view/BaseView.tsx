@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Formik} from 'formik';
-import ClientMessagesUtil from "../util/ClientMessagesUtil";
 import BaseModel from "@common/model/BaseModel";
 import {BaseService} from "@common/service/BaseService";
 
@@ -105,9 +104,5 @@ export default abstract class BaseView<M extends BaseModel<I>, I> extends React.
             state.model = this.createModel(state.model);
         }
         return state;
-    }
-
-    protected getMessage(id: string, args?: {}): string {
-        return ClientMessagesUtil.getMessage(this.getModel(), id, args);
     }
 }

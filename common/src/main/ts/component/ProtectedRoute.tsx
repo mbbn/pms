@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Navigate } from "react-router-dom";
-import {useAuth} from "@common/hooks/AuthProvider";
+import {useAuth} from "@common/provider/AuthProvider";
 
 interface ProtectedRouteProps {
     children: React.ReactElement;
@@ -10,8 +10,8 @@ export default class ProtectedRoute extends React.Component<ProtectedRouteProps,
 
     render() {
         const {children} = this.props;
-        const {user} = useAuth();
-        if(!user){
+        const {currentUser} = useAuth();
+        if(!currentUser){
             // user is not authenticated
             return <Navigate to="/login" />;
         }

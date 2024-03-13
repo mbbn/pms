@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AuthProvider} from "@common/hooks/AuthProvider";
+import {AuthProvider} from "@common/provider/AuthProvider";
 import {AppProvider} from "@common/entrypoint/BaseEntryPoint";
 
 const App = () => {

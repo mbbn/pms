@@ -4,7 +4,7 @@ import UserModel from "@common/model/UserModel";
 import useLocalStorage from "@common/hooks/useLocalStorage";
 import {useEffect} from "react";
 import UserService from "@common/service/UserService";
-import AuthorityModel from "@common/model/authorityModel";
+import AuthorityModel from "@common/model/AuthorityModel";
 
 interface AuthProviderProps {
     children: any;
@@ -12,12 +12,14 @@ interface AuthProviderProps {
 
 interface AuthContextProps {
     currentUser?: UserModel;
-    isAdmin?: () => boolean;
+    isAdmin: () => boolean;
     isAuthorize?: (authorize: string) => boolean;
     login?: (data:any) => Promise<void>;
     logout?: () => void;
 }
-const AuthContext = React.createContext<AuthContextProps>({});
+const AuthContext = React.createContext<AuthContextProps>({
+    isAdmin: () => false
+});
 export const AuthProvider = ({  children }:AuthProviderProps) => {
     const [currentUser, setCurrentUser] = useLocalStorage("user", null);
     useEffect(() => {

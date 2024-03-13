@@ -15,14 +15,14 @@ interface LocalProviderProps{
     messages: {};
     children: any;
 }
-interface LocalContextValueType {
+interface LocalContextProps {
     lang?: string;
     dir?: Direction;
-    messages?: {};
+    t?: any;
 }
-const LocalContext = React.createContext<LocalContextValueType>({});
+const LocalContext = React.createContext<LocalContextProps>({});
 
-function initLocalization(messages: {}, lang: string) {
+function initLocalization(messages: any, lang: string) {
     // import Backend from "i18next-http-backend";
     // import LanguageDetector from "i18next-browser-languagedetector";
     // don't want to use this?
@@ -102,12 +102,18 @@ export const LocalProvider = ({messages, lang, children}: LocalProviderProps) =>
     const value = React.useMemo(
         () => ({
             lang: i18n.language,
-            dir: direction,
-            messages: messages
+            dir: i18n.dir(i18n.language),
+            t: i18n.t
         }),
         [setDirection]
     );
     return <LocalContext.Provider value={value}><CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>{children}</CacheProvider></LocalContext.Provider>
+}
+
+export const getMessage = (key: string) => {
+    let context = React.useContext(LocalContext);
+    const {t} = context;
+    return t(key);
 }
 
 export const useLocal = () => {

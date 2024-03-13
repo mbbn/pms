@@ -10,7 +10,7 @@ interface AboutUsViewState {
 
 export default class AboutUsView extends BaseView<CompanyModel, string> {
 
-    service: CompanyService;
+    service: CompanyService = new CompanyService();
 
     getInitialState(): ViewState<CompanyModel, string> & AboutUsViewState {
         return {
