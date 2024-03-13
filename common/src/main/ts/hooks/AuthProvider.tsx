@@ -14,7 +14,7 @@ interface AuthContextProps {
     currentUser?: UserModel;
     isAdmin?: () => boolean;
     isAuthorize?: (authorize: string) => boolean;
-    login?: (data) => Promise<void>;
+    login?: (data:any) => Promise<void>;
     logout?: () => void;
 }
 const AuthContext = React.createContext<AuthContextProps>({});
@@ -46,7 +46,7 @@ export const AuthProvider = ({  children }:AuthProviderProps) => {
     }
 
     // call this function when you want to authenticate the user
-    const login = async (data) => {
+    const login = async (data:any) => {
         setCurrentUser(data);
         // navigate("/profile");
     };

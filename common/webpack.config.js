@@ -128,7 +128,6 @@ function getSpecialParams(mode) {
             devServer: {
                 static: path.join(__dirname, 'dist'),
                 compress: false,
-                hot: true, // HotModuleReplacement
                 open: true, // Opens browser
                 host: 'localhost',
                 port: 4000,

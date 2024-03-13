@@ -1,5 +1,3 @@
-import ClientMessagesUtil from "../util/ClientMessagesUtil";
-
 export default abstract class BaseModel<I> {
 
     static readonly ID = 'id';
@@ -21,10 +19,6 @@ export default abstract class BaseModel<I> {
 
     getEntityName(): string {
         return this.constructor.name.substring(0, this.constructor.name.lastIndexOf('Model'));
-    }
-
-    getMessage(id: string, args?: {}): string {
-        return ClientMessagesUtil.getMessage(this, id, args);
     }
 
     toString(): string {

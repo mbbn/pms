@@ -9,22 +9,17 @@ import {
     Box,
     AppBar,
     Toolbar,
-    IconButton,
-    Button,
     Typography,
     Container
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
 import {defaultThemeOptions, adminThemeOptions} from "@common/theme/Theme";
 import "@common/assets/scss/main.scss";
 
 interface AppContextProps {
-    uiTheme: ThemeOptions
+    uiTheme?: ThemeOptions
 }
 
-const AppContext = React.createContext<AppContextProps>({
-    uiTheme: null
-});
+const AppContext = React.createContext<AppContextProps>({});
 
 interface ScrollProps {
     /**
@@ -35,31 +30,19 @@ interface ScrollProps {
     children?: React.ReactElement;
 }
 
-interface AppProps extends ScrollProps{
+interface AppProps extends ScrollProps {
     messagesJson: {};
 }
-
-function ElevationScroll(props: ScrollProps) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 0,
-        target: window ? window() : undefined,
-    });
-
-    return React.cloneElement(children, {
-        elevation: trigger ? 4 : 0,
-    });
-}
-
 
 export const AppProvider = (props: AppProps) => {
     let local = useLocal();
     let auth = useAuth();
-    const [themeOption, setThemeOption] = React.useState(auth.isAdmin() ? adminThemeOptions(local.dir, 'light') : defaultThemeOptions(local.dir, 'light'));
+    const [themeOption, setThemeOption] = React.useState(() => {
+        if(auth && auth.isAdmin()){
+            return adminThemeOptions(local.dir, 'light');
+        }
+        return defaultThemeOptions(local.dir, 'light');
+    });
     const value = React.useMemo(
         () => ({
             uiTheme: createTheme(themeOption)
@@ -70,20 +53,18 @@ export const AppProvider = (props: AppProps) => {
         <LocalProvider messages={props.messagesJson} lang={"en"}>
             <ThemeProvider theme={value.uiTheme}>
                 <CssBaseline/>
-                <ElevationScroll {...props}>
-                    <Box>
-                        <AppBar>
-                            <Toolbar>
-                                <Typography variant="h6" component="div">
-                                    Scroll to elevate App bar
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                    </Box>
-                </ElevationScroll>
-                <Toolbar />
+                <Box>
+                    <AppBar>
+                        <Toolbar>
+                            <Typography variant="h6" component="div">
+                                Scroll to elevate App bar
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                </Box>
+                <Toolbar/>
                 <Container>
-                    <Box sx={{ my: 2 }}>
+                    <Box sx={{my: 2}}>
                         {[...new Array(50)]
                             .map(
                                 () => `Cras mattis consectetur purus sit amet fermentum.

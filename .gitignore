@@ -38,4 +38,10 @@ build/
 *.pid
 
 ### NodeJS ###
+application/node_modules/
+common/node_modules/
 node_modules/
+h2.mv.db
+h2.trace.db
+package.json
+package-lock.json

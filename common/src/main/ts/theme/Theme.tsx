@@ -195,19 +195,19 @@ const getDesignTokens = (mode: PaletteMode) => ({
         }
     }
 })
-export function defaultThemeOptions(dir: Direction, mode: PaletteMode): ThemeOptions {
+
+export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMode): ThemeOptions {
     return {
         ...getDesignTokens(mode),
         direction: dir,
-        components:{
+        components: {
             MuiAppBar: {
-                styleOverrides:{
-                    root: ({theme}) => ({
-                    })
+                styleOverrides: {
+                    root: ({theme}) => ({})
                 },
                 defaultProps: {
                     position: 'fixed',
-                    sx:{
+                    sx: {
                         boxShadow: 0,
                         // bgcolor: 'transparent',
                         backgroundImage: 'none',
@@ -219,7 +219,7 @@ export function defaultThemeOptions(dir: Direction, mode: PaletteMode): ThemeOpt
     };
 }
 
-export function adminThemeOptions(dir: Direction, mode: PaletteMode): ThemeOptions {
+export function adminThemeOptions(dir: Direction | undefined, mode: PaletteMode): ThemeOptions {
     return {
         ...getDesignTokens(mode),
         direction: dir
