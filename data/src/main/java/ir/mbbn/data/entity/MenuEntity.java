@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Set;
+
 @Builder
 @Getter
 public class MenuEntity {
@@ -13,4 +15,7 @@ public class MenuEntity {
 
     @JsonProperty("title")
     private String title;
+
+    @JsonProperty("subMenu")
+    private Set<MenuEntity> subMenu;
 }

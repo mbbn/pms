@@ -110,6 +110,12 @@ export const LocalProvider = ({messages, lang, children}: LocalProviderProps) =>
     return <LocalContext.Provider value={value}><CacheProvider value={direction === 'rtl' ? cacheRtl : cacheLtr}>{children}</CacheProvider></LocalContext.Provider>
 }
 
+export const getBaseMessage = (key: string) => {
+    let context = React.useContext(LocalContext);
+    const {t} = context;
+    return t('Base.'+key);
+}
+
 export const getMessage = (key: string) => {
     let context = React.useContext(LocalContext);
     const {t} = context;

@@ -12,11 +12,13 @@ import {
 import {defaultThemeOptions, adminThemeOptions} from "@common/theme/Theme";
 import {ExpandMore as ExpandMoreIcon, ChevronRight as ChevronRightIcon} from '@mui/icons-material';
 import {TreeView, TreeItem} from '@mui/x-tree-view';
+import "@fontsource/roboto"; // Defaults to weight 400
 import "@common/assets/scss/main.scss";
 import AppAppBar from "@common/component/AppAppBar";
 import {Context, useEffect} from "react";
 import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
+import MenuPanel from "@common/component/MenuPanel";
 
 interface AppContextProps {
     uiTheme?: Theme
@@ -65,6 +67,7 @@ export const AppProvider = (props: AppProps) => {
         });
         return () => {};
     }, []);
+
     return (<AppContext.Provider value={appValue}>
         <LocalProvider messages={props.messagesJson} lang={"fa"}>
             <ThemeProvider theme={uiTheme}>
@@ -86,13 +89,9 @@ export const AppProvider = (props: AppProps) => {
                         pt: {xs: 14, sm: 20},
                         pb: {xs: 8, sm: 12},
                     }}>
-                        <Grid container spacing={2}>
-                            <Grid item md={2}>
-                                <TreeView aria-label="file system navigator"
-                                          defaultCollapseIcon={<ExpandMoreIcon/>}
-                                          defaultExpandIcon={<ChevronRightIcon/>}>
-                                    {appValue.menus.map((menu, index) => <TreeItem nodeId={''+index} label={menu.title}/>)}
-                                </TreeView>
+                        <Grid container spacing={5}>
+                            <Grid item md={2} style={{boxShadow: 'rgba(0, 0, 0, 0.45) -20px 0px 20px -20px'}}>
+                                <MenuPanel/>
                             </Grid>
                             <Grid item md={8}>content</Grid>
                         </Grid>

@@ -1,8 +1,9 @@
 import {ThemeOptions} from "@mui/material/styles";
 import {alpha, Direction, PaletteMode} from "@mui/material";
-import {grey, red} from "@mui/material/colors";
+import {} from "@mui/x-tree-view/themeAugmentation";
+import {blueGrey, red, common} from "@mui/material/colors";
 
-export const defaultFontFamily: string = 'Vazir';
+export const defaultFontFamily: string = 'Vazirmatn';
 declare module '@mui/material/styles/createPalette' {
     interface ColorRange {
         50: string;
@@ -145,7 +146,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
         },
     },
     typography: {
-        fontFamily: ["Inter", "sans-serif", "Vazir", "Yekan"].join(','),
+        fontFamily: ["Roboto", defaultFontFamily].join(','),
         fontSize: 12,
         h1: {
             fontSize: 60,
@@ -181,7 +182,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
             fontSize: 16,
         },
         body1: {
-            fontFamily: "Yekan",
+            fontFamily: ["Roboto", defaultFontFamily].join(','),
             fontWeight: 400,
             fontSize: 15,
         },
@@ -221,6 +222,7 @@ export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMod
                 },
                 defaultProps: {
                     variant: 'regular',
+                    disableGutters: false,
                     sx: ((theme) => ({
                         display: 'flex',
                         alignItems: 'center',
@@ -240,6 +242,33 @@ export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMod
                                 ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
                                 : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)'
                     }))
+                }
+            },
+            MuiSimpleTreeView: {
+                styleOverrides:{
+                    root:{
+
+                    }
+                }
+            },
+            MuiTreeItem: {
+                styleOverrides:{
+                    root:{
+                    },
+                    content:{
+                        color: blueGrey[500],
+                        '&.Mui-selected':{
+                            fontSize: 15,
+                            backgroundColor: 'transparent',
+                            color: common.black
+                        }
+                    },
+                    label:{
+                        fontWeight: 'bold',
+                        padding: 5
+                    },
+                    selected: {
+                    }
                 }
             }
         }

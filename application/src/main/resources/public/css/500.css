@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'Vazir';
-    src: url('../fonts/Vazir.eot');
-    src: local('../fonts/Vazir'), url('../fonts/Vazir.woff') format('woff'), url('../fonts/Vazir.ttf') format('truetype');
+    font-family: 'Vazirmatn';
+    src: url('../fonts/Vazirmatn[wght].woff2') format('woff2 supports variations'),
+    url('../fonts/Vazirmatn[wght].woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
 
 *,
@@ -16,7 +19,7 @@ body {
     background-color: #639;
     display: flex;
     flex-direction: column;
-    font-family: 'Sigmar One', cursive;
+    font-family: 'Vazirmatn', cursive;
     justify-content: center;
     margin: 0;
     padding: 1rem;
