@@ -20,6 +20,9 @@ public class MenuEntity extends BaseEntity<String> {
     @Column(name = "TITLE", nullable = false)
     private String title;
 
+    @Column(name = "PATH")
+    private String path;
+
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID", foreignKey = @ForeignKey(name = "FK_MENU_PARENT"))
     private MenuEntity parent;*/

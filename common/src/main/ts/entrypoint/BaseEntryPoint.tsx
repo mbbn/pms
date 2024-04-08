@@ -6,8 +6,7 @@ import {
     ThemeProvider,
     CssBaseline,
     Box,
-    Container,
-    Grid
+    Container
 } from "@mui/material";
 import {defaultThemeOptions, adminThemeOptions} from "@common/theme/Theme";
 import "@fontsource/roboto"; // Defaults to weight 400
@@ -16,7 +15,6 @@ import AppAppBar from "@common/component/AppAppBar";
 import {Context, useEffect} from "react";
 import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
-import MenuPanel from "@common/component/MenuPanel";
 import AbstractViewName from "@common/view/AbstractViewName";
 import NavigationManager from "@common/view/NavigationManager";
 
@@ -90,14 +88,7 @@ export const AppProvider = (props: AppProps) => {
                         pt: {xs: 14, sm: 20},
                         pb: {xs: 8, sm: 12},
                     }}>
-                        <Grid container spacing={5}>
-                            <Grid item xs={false} sm={2}>
-                                <MenuPanel/>
-                            </Grid>
-                            <Grid item md={8}>
-                                <NavigationManager firstViewName={props.firstViewName}/>
-                            </Grid>
-                        </Grid>
+                        <NavigationManager firstViewName={props.firstViewName}/>
                     </Container>
                 </Box>
             </ThemeProvider>

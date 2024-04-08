@@ -4,6 +4,7 @@ export default class MenuModel extends BaseModel<string> {
 
     id: string | undefined;
     title: string | undefined;
+    path: string | undefined;
     subMenu: MenuModel[] | undefined;
 
     constructor(props?: any) {
