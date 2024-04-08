@@ -3,11 +3,17 @@ import {useEffect} from "react";
 
 export abstract class BaseService<MODEL extends BaseModel<IdType>, IdType> {
 
-    protected async get(path: string): Promise<MODEL> {
-        return await fetch(path, {
-            method: 'GET',
-            cache: 'no-cache'
-        }).then((response) => response.json());
+    protected async get(path: string): Promise<MODEL|null> {
+        try {
+            let response = await fetch(path, {method: 'GET',cache: 'no-cache'});
+            if(!response.ok){
+                throw response.statusText;
+            }
+            return response.json();
+        } catch (e){
+            console.error(e);
+            return null;
+        }
     }
 
     private post(path: string, body: any): Promise<Response> {

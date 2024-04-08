@@ -10,8 +10,6 @@ import {
     Grid
 } from "@mui/material";
 import {defaultThemeOptions, adminThemeOptions} from "@common/theme/Theme";
-import {ExpandMore as ExpandMoreIcon, ChevronRight as ChevronRightIcon} from '@mui/icons-material';
-import {TreeView, TreeItem} from '@mui/x-tree-view';
 import "@fontsource/roboto"; // Defaults to weight 400
 import "@common/assets/scss/main.scss";
 import AppAppBar from "@common/component/AppAppBar";
@@ -19,6 +17,8 @@ import {Context, useEffect} from "react";
 import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
 import MenuPanel from "@common/component/MenuPanel";
+import AbstractViewName from "@common/view/AbstractViewName";
+import NavigationManager from "@common/view/NavigationManager";
 
 interface AppContextProps {
     uiTheme?: Theme
@@ -39,6 +39,7 @@ interface ScrollProps {
 
 interface AppProps extends ScrollProps {
     messagesJson: {};
+    firstViewName: AbstractViewName;
 }
 
 export const AppProvider = (props: AppProps) => {
@@ -90,10 +91,12 @@ export const AppProvider = (props: AppProps) => {
                         pb: {xs: 8, sm: 12},
                     }}>
                         <Grid container spacing={5}>
-                            <Grid item md={2} style={{boxShadow: 'rgba(0, 0, 0, 0.45) -20px 0px 20px -20px'}}>
+                            <Grid item xs={false} sm={2}>
                                 <MenuPanel/>
                             </Grid>
-                            <Grid item md={8}>content</Grid>
+                            <Grid item md={8}>
+                                <NavigationManager firstViewName={props.firstViewName}/>
+                            </Grid>
                         </Grid>
                     </Container>
                 </Box>

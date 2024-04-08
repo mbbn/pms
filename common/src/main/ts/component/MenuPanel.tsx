@@ -11,7 +11,7 @@ import {useApp} from "@common/entrypoint/BaseEntryPoint";
 function MenuPanel() {
     const app = useApp();
 
-    return <Paper variant="elevation" elevation={0} square={false}
+    return <Paper variant="outlined" elevation={0} square={false}
                   style={{padding: 5, backgroundColor: common.white, paddingBottom: 5}}>
         <div style={{
             fontSize: 16,
@@ -28,8 +28,8 @@ function MenuPanel() {
                             expandIcon: ChevronRightIcon,
                             collapseIcon: ExpandMoreIcon
                         }}>
-            {app.menus.map((menu, index) => <TreeItem itemId={'' + index} label={menu.title}>
-                {menu.subMenu ? menu.subMenu.map((subMenu, subMenuIndex) => <TreeItem itemId={''+index + subMenuIndex}
+            {app.menus.map((menu, index) => <TreeItem key={menu.id} itemId={'' + index} label={menu.title}>
+                {menu.subMenu ? menu.subMenu.map((subMenu, subMenuIndex) => <TreeItem key={menu.id+'-'+subMenu.id} itemId={''+index + subMenuIndex}
                                                                                       label={subMenu.title}/>) : null}
             </TreeItem>)}
         </SimpleTreeView>
