@@ -204,7 +204,6 @@ export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMod
         components: {
             MuiAppBar: {
                 styleOverrides: {
-                    root: ({theme}) => ({})
                 },
                 defaultProps: {
                     position: 'fixed',
@@ -218,7 +217,6 @@ export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMod
             },
             MuiToolbar:{
                 styleOverrides: {
-                    root: ({theme}) => ({})
                 },
                 defaultProps: {
                     variant: 'regular',
@@ -282,7 +280,6 @@ export function adminThemeOptions(dir: Direction | undefined, mode: PaletteMode)
         components: {
             MuiAppBar: {
                 styleOverrides: {
-                    root: ({theme}) => ({})
                 },
                 defaultProps:{
                     color: 'transparent'

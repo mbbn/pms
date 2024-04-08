@@ -4,7 +4,7 @@ let PropertiesReader = require('properties-reader');
 let {mkdirpSync} = require('mkdirp');
 let projectName = process.argv[2];
 
-const getJsonMessages = (resultProps, locale, pattern) => {
+const getJsonMessages = function (resultProps, locale, pattern) {
 	globSync(pattern)
 		.map((filename) => {
 			const props = PropertiesReader(filename)._properties;
@@ -15,7 +15,7 @@ const getJsonMessages = (resultProps, locale, pattern) => {
 				}
 			}
 		});
-};
+}
 
 const jsonMessagesFa = {};
 getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/java/**/*Messages.properties');

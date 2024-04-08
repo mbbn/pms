@@ -9,7 +9,6 @@ export interface ViewState<M extends BaseModel<I>, I> {
 
 export default abstract class BaseView<M extends BaseModel<I>, I> extends React.Component<any, any> {
 
-    // state: any = this.getHistoryState() ? this.getHistoryState() : this.getInitialState();
     state:any = this.getInitialState();
     setStateIsInProgress = false; // If true, 'formik.state.values' is stale and 'state.model' should be used.
     service: BaseService<M, I>;

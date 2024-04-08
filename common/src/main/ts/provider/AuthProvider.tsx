@@ -1,10 +1,8 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 import UserModel from "@common/model/UserModel";
 import useLocalStorage from "@common/hooks/useLocalStorage";
 import {useEffect} from "react";
 import UserService from "@common/service/UserService";
-import AuthorityModel from "@common/model/AuthorityModel";
 
 interface AuthProviderProps {
     children: any;
