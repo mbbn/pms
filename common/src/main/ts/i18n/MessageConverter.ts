@@ -4,20 +4,23 @@ let PropertiesReader = require('properties-reader');
 let {mkdirpSync} = require('mkdirp');
 let projectName = process.argv[2];
 
-const getJsonMessages = function (resultProps, locale, pattern) {
-	globSync(pattern)
-		.map((filename) => {
-			const props = PropertiesReader(filename)._properties;
-			filename = filename.toString().substr(String(filename).lastIndexOf('\\') + 1, String(filename).length).replace(locale === 'fa' ? 'Messages.properties' : 'Messages_en.properties', '');
-			for (let key in props) {
-				if (props.hasOwnProperty(key)) {
-					resultProps[filename + '.' + key] = JSON.parse('"' + props[key].replace(/([^\\]|^)\"/g, '$1\\"') + '"');
-				}
-			}
-		});
+function getJsonMessages(resultProps: any, locale: string, pattern: string) {
+    globSync(pattern)
+        .map((filename: string) => {
+            const props = PropertiesReader(filename)._properties;
+            filename = filename.toString().substr(String(filename).lastIndexOf('\\') + 1, String(filename).length).replace(locale === 'fa' ? 'Messages.properties' : 'Messages_en.properties', '');
+            for (let key in props) {
+                if (props.hasOwnProperty(key)) {
+                    resultProps[filename + '.' + key] = JSON.parse('"' + props[key].replace(/([^\\]|^)\"/g, '$1\\"') + '"');
+                }
+            }
+        });
 }
 
 const jsonMessagesFa = {};
+
+
+
 getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/java/**/*Messages.properties');
 getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/resources/**/*Messages.properties');
 getJsonMessages(jsonMessagesFa, 'fa', '../common/src/main/ts/**/*Messages.properties');

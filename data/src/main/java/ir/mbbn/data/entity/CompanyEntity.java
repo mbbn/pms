@@ -6,8 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@Table(name = "COMPANY", uniqueConstraints = {
-})
+@Table(name = "COMPANY", uniqueConstraints = {@UniqueConstraint(name = "UK_COMPANY", columnNames = "HOST_NAME")})
 @EqualsAndHashCode(callSuper = true)
 public class CompanyEntity extends BaseEntity<String>{
 

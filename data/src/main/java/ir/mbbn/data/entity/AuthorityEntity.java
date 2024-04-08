@@ -16,7 +16,7 @@ public class AuthorityEntity extends BaseEntity<String> implements GrantedAuthor
     @Column(name = "AUTHORITY_ID", length = 36)
     private String id;
 
-    @Column(name = "AUTHORITY", nullable = false, unique = true)
+    @Column(name = "AUTHORITY", nullable = false)
     private String authority;
 
     @Column(name = "TITLE", nullable = false)

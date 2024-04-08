@@ -4,7 +4,7 @@ import ir.mbbn.data.entity.AuthorityEntity;
 import ir.mbbn.data.entity.RoleEntity;
 import ir.mbbn.data.entity.UserEntity;
 import ir.mbbn.data.entity.UserRoleEntity;
-import ir.mbbn.service.EntityMapper;
+import ir.mbbn.mapper.EntityMapper;
 import ir.mbbn.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package ir.mbbn.service;
+package ir.mbbn.mapper;
 
 import ir.mbbn.data.entity.*;
 import org.mapstruct.*;

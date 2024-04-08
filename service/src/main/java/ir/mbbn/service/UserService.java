@@ -2,6 +2,7 @@ package ir.mbbn.service;
 
 import ir.mbbn.data.entity.UserEntity;
 import ir.mbbn.data.repository.UserRepository;
+import ir.mbbn.mapper.EntityMapper;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
