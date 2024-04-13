@@ -6,6 +6,7 @@ import {TextField} from "@common/component/TextField";
 import CompanyModel from "@common/model/CompanyModel";
 import CompanyService from "@common/service/CompanyService";
 import {FormProvider} from "@common/provider/FormProvider";
+import {Label} from "@common/component/Label";
 
 export const SettingsView = () => {
     const [company, setCompany] = useState<CompanyModel>();
@@ -26,9 +27,8 @@ export const SettingsView = () => {
                           <>
                               <Grid container spacing={2}>
                                   <Grid item md={4} xs={12}>
-                                      <TextField label={local.getMessage(CompanyModel.MODEL, CompanyModel.HOST_NAME)}
-                                                 name={CompanyModel.HOST_NAME} onChange={handleChange} onBlur={handleBlur}
-                                                 value={values[CompanyModel.HOST_NAME]}/>
+                                      <Label label={local.getMessage(CompanyModel.MODEL, CompanyModel.HOST_NAME)}
+                                             value={values[CompanyModel.HOST_NAME]}/>
                                   </Grid>
                                   <Grid item md={4} xs={12}>
                                       <TextField label={local.getMessage(CompanyModel.MODEL, CompanyModel.LATIN_NAME)}
