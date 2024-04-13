@@ -263,7 +263,10 @@ export function defaultThemeOptions(dir: Direction | undefined, mode: PaletteMod
                     },
                     label:{
                         fontWeight: 'bold',
-                        padding: 5
+                        padding: 5,
+                        '> a':{
+                            textDecoration: 'none'
+                        }
                     },
                     selected: {
                     }

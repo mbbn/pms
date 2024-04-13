@@ -1,14 +1,15 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 import {
     Paper
 } from '@mui/material';
 import {SimpleTreeView, TreeItem} from '@mui/x-tree-view';
 import {ExpandMore as ExpandMoreIcon, ChevronRight as ChevronRightIcon} from '@mui/icons-material';
-import {blueGrey, lightBlue, common} from '@mui/material/colors';
-import {getBaseMessage} from '../provider/LocalProvider'
+import {lightBlue, common} from '@mui/material/colors';
 import {useApp} from "@common/entrypoint/BaseEntryPoint";
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
+import {useLocal} from "@common/provider/LocalProvider";
 
 interface MenuProps {
     sx?: SxProps<Theme>;
@@ -16,6 +17,7 @@ interface MenuProps {
 
 function MenuPanel(props: MenuProps) {
     const app = useApp();
+    const local = useLocal();
     const {sx} = props;
 
     return <Paper variant="outlined" elevation={0} square={false}
@@ -29,19 +31,18 @@ function MenuPanel(props: MenuProps) {
             paddingRight: 15,
             paddingBottom: 10,
             marginBottom: 5
-        }}>{getBaseMessage('menu')}</div>
+        }}>{local.getBaseMessage('menu')}</div>
         <SimpleTreeView aria-label="file system navigator"
         sx={{display: 'block'}}
                         slots={{
                             expandIcon: ChevronRightIcon,
                             collapseIcon: ExpandMoreIcon
                         }}>
-            {app.menus.map((menu, index) => <TreeItem key={menu.id} itemId={'' + index} label={<div onClick={event => event.stopPropagation()}>
-                <div onClick={() => menu.path ? window.location.href = menu.path : null}>{menu.title}</div>
-            </div>} >
-                {menu.subMenu ? menu.subMenu.map((subMenu, subMenuIndex) => <TreeItem key={menu.id+'-'+subMenu.id} itemId={''+index + subMenuIndex}
-                                                                                      label={subMenu.title}/>) : null}
-            </TreeItem>)}
+            {app.menus ? app.menus.map((menu, index) => <TreeItem key={menu.id} itemId={'' + index} label={menu.path ? <Link to={menu.path}>{menu.title}</Link> : menu.title}>
+                {menu.subMenu ? menu.subMenu.map((subMenu, subMenuIndex) => <TreeItem key={menu.id + '-' + subMenu.id}
+                                                                                      itemId={'' + index + subMenuIndex}
+                                                                                      label={subMenu.path ? <Link to={subMenu.path}>{subMenu.title}</Link> : subMenu.title}/>) : null}
+            </TreeItem>) : null}
         </SimpleTreeView>
     </Paper>
 }

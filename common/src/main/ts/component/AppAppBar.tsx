@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {useAuth} from "@common/provider/AuthProvider";
-import {useLocal, getMessage} from "@common/provider/LocalProvider";
 import {useApp} from "@common/entrypoint/BaseEntryPoint";
+import {useLocal} from "@common/provider/LocalProvider";
+import {Link} from 'react-router-dom';
 
 function AppAppBar(){
     let auth = useAuth();
@@ -66,15 +67,15 @@ function AppToolbar(){
                 backgroundPosition: 'center',
             })}/>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                {app.menus.map((menu, index) =>
+                {app.menus ? app.menus.map((menu, index) =>
                     <MenuItem key={menu.id}
                         onClick={() => scrollToSection('features')}
                         sx={{ py: '6px', px: '12px' }}
                     >
                         <Typography variant="body1" color="text.primary">
-                            {menu.title}
+                            {menu.path ? <Link to={menu.path}>{menu.title}</Link> : menu.title}
                         </Typography>
-                    </MenuItem>)}
+                    </MenuItem>): null}
             </Box>
         </Box>
     </Toolbar>);
