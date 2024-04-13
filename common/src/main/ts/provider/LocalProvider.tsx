@@ -14,7 +14,8 @@ interface LocalContextProps {
     lang?: string;
     dir?: Direction;
     uiTheme?: Theme
-    getMessage(key: string): string;
+
+    getMessage(model: {}, key: string): string;
     getBaseMessage(key: string): string;
 }
 
@@ -51,8 +52,8 @@ export const LocalProvider = ({messagesJson, children}: LocalProviderProps) => {
     const value = React.useMemo(
         () => ({
             uiTheme: uiTheme,
-            getMessage(key: string): string {
-                return i18n.t(key);
+            getMessage(messageKey: string,key: string): string {
+                return i18n.t(messageKey + '.' + key);
             },
             getBaseMessage(key: string): string {
                 return i18n.t('Base.'+key);
