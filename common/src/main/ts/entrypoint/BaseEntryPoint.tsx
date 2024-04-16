@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {
     Box,
-    Modal
+    Modal,
+    Typography
 } from "@mui/material";
 import "@fontsource/roboto"; // Defaults to weight 400
 import "@common/assets/scss/main.scss";
@@ -12,14 +13,17 @@ import {RouteProvider} from "@common/provider/RouteProvider";
 import {LocalProvider} from "@common/provider/LocalProvider";
 
 interface AppContextProps {
-    openModal: boolean;
     initialized: boolean;
     menus?: MenuModel[];
+
+    openWaiting(): void;
+    closeWaiting(): void;
 }
 
 const AppContext: Context<AppContextProps> = React.createContext<AppContextProps>({
-    openModal: true,
-    initialized: false
+    initialized: false,
+    openWaiting() {},
+    closeWaiting() {}
 });
 interface ScrollProps {
     /**
@@ -35,28 +39,56 @@ interface AppProps extends ScrollProps {
 }
 
 export const AppProvider = (props: AppProps) => {
+    const [openModal, setOpenModal] = React.useState(true);
     const [appValue, setAppValue] = React.useState((): AppContextProps => ({
-        openModal: true,
-        initialized: false
+        initialized: false,
+        openWaiting() {},
+        closeWaiting() {}
     }));
     useEffect(()=>{
         const menuService = MenuService.INSTANCE;
         menuService.loadAllModels().then(menus => {
             setAppValue({
-                openModal: false,
                 initialized: true,
-                menus
+                menus,
+                openWaiting() {
+                    setOpenModal(true);
+                },
+                closeWaiting() {
+                    setOpenModal(false);
+                }
             })
         });
+        // setOpenModal(false);
     },[]);
     if(!appValue.initialized){
         return preLoadingView();
     }
+    console.log('sss', appValue);
 
     return (<AppContext.Provider value={appValue}>
         <LocalProvider messagesJson={props.messagesJson}>
-            <Modal open={appValue.openModal}>
-                <Box>waiting...</Box>
+            <Modal open={openModal}
+                   aria-labelledby="modal-modal-title"
+                   aria-describedby="modal-modal-description" >
+                <Box sx={{
+                    position: 'absolute' as 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 400,
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 4
+                }}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Text in a modal
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                    </Typography>
+                </Box>
             </Modal>
             <RouteProvider/>
         </LocalProvider>

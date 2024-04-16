@@ -7,9 +7,11 @@ import CompanyModel from "@common/model/CompanyModel";
 import CompanyService from "@common/service/CompanyService";
 import {FormProvider, Validator} from "@common/provider/FormProvider";
 import {Label} from "@common/component/Label";
+import {useApp} from "@common/entrypoint/BaseEntryPoint";
 
 export const SettingsView = () => {
     const [company, setCompany] = useState<CompanyModel>();
+    const app = useApp();
     const local = useLocal();
     const companyService = CompanyService.INSTANCE;
     useEffect(() => {
@@ -28,7 +30,11 @@ export const SettingsView = () => {
     return (
         <FormProvider title={local.getBaseMessage('settings')} icon={<Settings color="info"/>} initialValues={company}
                       validate={validate} submit={values => {
-            companyService.update(values);
+            app.openWaiting();
+            companyService.update(values).then(value => {
+                app.closeWaiting();
+                setCompany(value);
+            });
         }} render={({values}) =>
                           <>
                               <Grid container spacing={2}>
