@@ -11,9 +11,9 @@ import {Label} from "@common/component/Label";
 export const SettingsView = () => {
     const [company, setCompany] = useState<CompanyModel>();
     const local = useLocal();
+    const companyService = CompanyService.INSTANCE;
     useEffect(() => {
-        const companyService = new CompanyService();
-        companyService.currentCompany().then(company => {
+        companyService.loadCurrentModels().then(company => {
             setCompany(company);
         });
     }, []);
@@ -27,7 +27,9 @@ export const SettingsView = () => {
 
     return (
         <FormProvider title={local.getBaseMessage('settings')} icon={<Settings color="info"/>} initialValues={company}
-                      validate={validate} render={({values}) =>
+                      validate={validate} submit={values => {
+            companyService.update(values);
+        }} render={({values}) =>
                           <>
                               <Grid container spacing={2}>
                                   <Grid item md={4} xs={12}>

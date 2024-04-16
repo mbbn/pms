@@ -18,6 +18,7 @@ public interface EntityMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "hostName", source = "hostName")
     @Mapping(target = "latinName", source = "latinName")
     @Mapping(target = "persianName", source = "persianName")
     @Mapping(target = "about", source = "about")

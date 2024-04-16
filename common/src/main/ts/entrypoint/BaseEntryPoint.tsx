@@ -40,8 +40,8 @@ export const AppProvider = (props: AppProps) => {
         initialized: false
     }));
     useEffect(()=>{
-        const menuService = new MenuService();
-        menuService.menus().then(menus => {
+        const menuService = MenuService.INSTANCE;
+        menuService.loadAllModels().then(menus => {
             setAppValue({
                 openModal: false,
                 initialized: true,

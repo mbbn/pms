@@ -3,10 +3,10 @@ import {Box, Grid, Stack, Typography } from '@mui/material';
 import CompanyService from "@common/service/CompanyService";
 
 export const AboutUsView = () => {
-    const service = new CompanyService();
+    const service = CompanyService.INSTANCE;
     const [htmlText, setHtmlText] = useState<string>('');
     useEffect(() => {
-        service.currentCompany().then(value => {
+        service.loadCurrentModels().then(value => {
             if (value && value.about) {
                 setHtmlText(value.about);
             }

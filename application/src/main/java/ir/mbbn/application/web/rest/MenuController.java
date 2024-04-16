@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(CrudApi.BASE_API_PATH + "/Menu")
+@RequestMapping(CrudApi.BASE_API_PATH + "/menu")
 public class MenuController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

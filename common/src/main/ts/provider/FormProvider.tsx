@@ -18,9 +18,10 @@ interface FormProviderProps<MODEL extends BaseModel<any>> {
     render(props: FormikProps<MODEL>): React.ReactNode;
 
     validate?(validator: Validator<MODEL>): void;
+    submit?(values: MODEL): void;
 }
 
-export const FormProvider = ({title, icon, initialValues, validate, render}: FormProviderProps<any>) => {
+export const FormProvider = ({title, icon, initialValues, validate, submit, render}: FormProviderProps<any>) => {
     const local = useLocal();
     const validation = (values: any): void | object | Promise<FormikErrors<any>> => {
         if (validate) {
@@ -40,15 +41,19 @@ export const FormProvider = ({title, icon, initialValues, validate, render}: For
         }
     }
     return (<Formik initialValues={initialValues} validate={validation} onSubmit={(values, {setSubmitting}) => {
+        submit ? submit(values) : null
     }}>
-        {(props: FormikProps<any>) => <Card variant="outlined">
-            <CardHeader title={title} avatar={icon}/>
-            <CardContent>
-                {render(props)}
-                <Stack direction="row" spacing={2} justifyContent="flex-end">
-                    <Button variant="contained" type="submit">{local.getBaseMessage('submit')}</Button>
-                </Stack>
-            </CardContent>
-        </Card>}
+        {(props: FormikProps<any>) =>
+            <form onSubmit={props.handleSubmit}>
+                <Card variant="outlined">
+                    <CardHeader title={title} avatar={icon}/>
+                    <CardContent>
+                        {render(props)}
+                        <Stack direction="row" spacing={2} justifyContent="flex-end">
+                            <Button variant="contained" type="submit">{local.getBaseMessage('submit')}</Button>
+                        </Stack>
+                    </CardContent>
+                </Card>
+            </form>}
     </Formik>)
 }
