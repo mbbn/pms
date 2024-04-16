@@ -3,41 +3,52 @@ import {Formik, FormikProps, FormikErrors} from "formik";
 import {Card, CardHeader, CardContent, CardActionArea, Stack, Button} from "@mui/material";
 import {useLocal} from "@common/provider/LocalProvider";
 import BaseModel from "@common/model/BaseModel";
-import {Validator} from "@common/util/Validator";
 
-interface FormContextProps {
-}
-
-const FormContext = React.createContext<FormContextProps>({});
+export type Validator<MODEL> = {
+    values: MODEL;
+    errors: FormikErrors<MODEL>;
+    notEmpty(propertyName: string, propertyTitle: string): void;
+};
 
 interface FormProviderProps<MODEL extends BaseModel<any>> {
     title: string;
     icon: React.ReactNode;
     initialValues: MODEL;
-    render(props: FormikProps<any>): React.ReactNode;
+
+    render(props: FormikProps<MODEL>): React.ReactNode;
+
+    validate?(validator: Validator<MODEL>): void;
 }
 
-export const FormProvider = ({title, icon, initialValues ,render}: FormProviderProps<any>) => {
+export const FormProvider = ({title, icon, initialValues, validate, render}: FormProviderProps<any>) => {
     const local = useLocal();
-    const value = React.useMemo(
-        () => ({}),
-        []
-    );
-    const validator = (values: any): void | object | Promise<FormikErrors<any>> => {
-
+    const validation = (values: any): void | object | Promise<FormikErrors<any>> => {
+        if (validate) {
+            const errors = {};
+            const validator: Validator<any> = {
+                values,
+                errors,
+                notEmpty(propertyName: string, propertyTitle: string) {
+                    if (!values.hasOwnProperty(propertyName) || values[propertyName].trim().length === 0) {
+                        // @ts-ignore
+                        errors[propertyName] = local.getCommonMessage('error.empty', {0: propertyTitle});
+                    }
+                }
+            };
+            validate(validator);
+            return validator.errors;
+        }
     }
-    return (<FormContext.Provider value={value}>
-        <Formik initialValues={initialValues} validate={validator} onSubmit={(values, {setSubmitting}) => {
-        }}>
-            {(props: FormikProps<any>) => <Card variant="outlined">
-                <CardHeader title={title} avatar={icon}/>
-                <CardContent>
-                    {render(props)}
-                    <Stack direction="row" spacing={2} justifyContent="flex-end">
-                        <Button variant="contained" type="submit">{local.getBaseMessage('submit')}</Button>
-                    </Stack>
-                </CardContent>
-            </Card>}
-        </Formik>
-    </FormContext.Provider>)
+    return (<Formik initialValues={initialValues} validate={validation} onSubmit={(values, {setSubmitting}) => {
+    }}>
+        {(props: FormikProps<any>) => <Card variant="outlined">
+            <CardHeader title={title} avatar={icon}/>
+            <CardContent>
+                {render(props)}
+                <Stack direction="row" spacing={2} justifyContent="flex-end">
+                    <Button variant="contained" type="submit">{local.getBaseMessage('submit')}</Button>
+                </Stack>
+            </CardContent>
+        </Card>}
+    </Formik>)
 }

@@ -15,13 +15,15 @@ interface LocalContextProps {
     dir?: Direction;
     uiTheme?: Theme
 
-    getMessage(model: {}, key: string): string;
-    getBaseMessage(key: string): string;
+    getMessage(model: {}, key: string, arg?: {}): string;
+    getBaseMessage(key: string, arg?: {}): string;
+    getCommonMessage(key: string, arg?: {}): string;
 }
 
 const LocalContext = React.createContext<LocalContextProps>({
     getMessage: ()=> '',
-    getBaseMessage: ()=> ''
+    getBaseMessage: ()=> '',
+    getCommonMessage: ()=> ''
 });
 
 interface LocalProviderProps {
@@ -52,15 +54,18 @@ export const LocalProvider = ({messagesJson, children}: LocalProviderProps) => {
     const value = React.useMemo(
         () => ({
             uiTheme: uiTheme,
-            getMessage(messageKey: any | string, key: string): string {
+            getMessage(messageKey: any | string, key: string, arg?: {}): string {
                 if (typeof messageKey === "function") {
                     messageKey = messageKey.name;
                 }
                 messageKey = messageKey.replace("Model", "");
-                return i18n.t(messageKey + '.' + key);
+                return i18n.t(messageKey + '.' + key, arg);
             },
-            getBaseMessage(key: string): string {
-                return i18n.t('Base.'+key);
+            getBaseMessage(key: string, arg?: {}): string {
+                return i18n.t('Base.'+key, arg);
+            },
+            getCommonMessage(key: string, arg?: {}): string {
+                return i18n.t('Common.'+key, arg);
             }
         }),
         []

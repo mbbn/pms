@@ -5,9 +5,8 @@ import {useLocal} from "@common/provider/LocalProvider";
 import {TextField} from "@common/component/TextField";
 import CompanyModel from "@common/model/CompanyModel";
 import CompanyService from "@common/service/CompanyService";
-import {FormProvider} from "@common/provider/FormProvider";
+import {FormProvider, Validator} from "@common/provider/FormProvider";
 import {Label} from "@common/component/Label";
-import {Validator} from "@common/util/Validator";
 
 export const SettingsView = () => {
     const [company, setCompany] = useState<CompanyModel>();
@@ -22,11 +21,13 @@ export const SettingsView = () => {
         return null;
     const validate = function (validator: Validator<CompanyModel>) {
         validator.notEmpty(CompanyModel.LATIN_NAME, local.getMessage(CompanyModel, CompanyModel.LATIN_NAME));
+        validator.notEmpty(CompanyModel.PERSIAN_NAME, local.getMessage(CompanyModel, CompanyModel.PERSIAN_NAME));
+        validator.notEmpty(CompanyModel.ABOUT, local.getMessage(CompanyModel, CompanyModel.ABOUT));
     }
 
     return (
         <FormProvider title={local.getBaseMessage('settings')} icon={<Settings color="info"/>} initialValues={company}
-                      render={({values}) =>
+                      validate={validate} render={({values}) =>
                           <>
                               <Grid container spacing={2}>
                                   <Grid item md={4} xs={12}>
