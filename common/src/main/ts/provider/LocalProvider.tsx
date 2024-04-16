@@ -52,7 +52,11 @@ export const LocalProvider = ({messagesJson, children}: LocalProviderProps) => {
     const value = React.useMemo(
         () => ({
             uiTheme: uiTheme,
-            getMessage(messageKey: string,key: string): string {
+            getMessage(messageKey: any | string, key: string): string {
+                if (typeof messageKey === "function") {
+                    messageKey = messageKey.name;
+                }
+                messageKey = messageKey.replace("Model", "");
                 return i18n.t(messageKey + '.' + key);
             },
             getBaseMessage(key: string): string {

@@ -7,43 +7,43 @@ import CompanyModel from "@common/model/CompanyModel";
 import CompanyService from "@common/service/CompanyService";
 import {FormProvider} from "@common/provider/FormProvider";
 import {Label} from "@common/component/Label";
+import {Validator} from "@common/util/Validator";
 
 export const SettingsView = () => {
     const [company, setCompany] = useState<CompanyModel>();
+    const local = useLocal();
     useEffect(() => {
         const companyService = new CompanyService();
         companyService.currentCompany().then(company => {
             setCompany(company);
         });
     }, []);
-    if(!company)
+    if (!company)
         return null;
-
-    const local = useLocal();
+    const validate = function (validator: Validator<CompanyModel>) {
+        validator.notEmpty(CompanyModel.LATIN_NAME, local.getMessage(CompanyModel, CompanyModel.LATIN_NAME));
+    }
 
     return (
         <FormProvider title={local.getBaseMessage('settings')} icon={<Settings color="info"/>} initialValues={company}
-                      render={({handleChange, handleBlur, values}) =>
+                      render={({values}) =>
                           <>
                               <Grid container spacing={2}>
                                   <Grid item md={4} xs={12}>
-                                      <Label label={local.getMessage(CompanyModel.MODEL, CompanyModel.HOST_NAME)}
+                                      <Label label={local.getMessage(CompanyModel, CompanyModel.HOST_NAME)}
                                              value={values[CompanyModel.HOST_NAME]}/>
                                   </Grid>
                                   <Grid item md={4} xs={12}>
-                                      <TextField label={local.getMessage(CompanyModel.MODEL, CompanyModel.LATIN_NAME)}
-                                                 name={CompanyModel.LATIN_NAME} onChange={handleChange} onBlur={handleBlur}
-                                                 value={values[CompanyModel.LATIN_NAME]}/>
+                                      <TextField label={local.getMessage(CompanyModel, CompanyModel.LATIN_NAME)}
+                                                 name={CompanyModel.LATIN_NAME}/>
                                   </Grid>
                                   <Grid item md={4} xs={12}>
-                                      <TextField label={local.getMessage(CompanyModel.MODEL, CompanyModel.PERSIAN_NAME)}
-                                                 name={CompanyModel.PERSIAN_NAME} onChange={handleChange} onBlur={handleBlur}
-                                                 value={values[CompanyModel.PERSIAN_NAME]}/>
+                                      <TextField label={local.getMessage(CompanyModel, CompanyModel.PERSIAN_NAME)}
+                                                 name={CompanyModel.PERSIAN_NAME}/>
                                   </Grid>
                                   <Grid item xs={12}>
-                                      <TextField label={local.getMessage(CompanyModel.MODEL, CompanyModel.ABOUT)}
-                                                 name={CompanyModel.ABOUT} onChange={handleChange} onBlur={handleBlur}
-                                                 value={values[CompanyModel.ABOUT]} multiline rows={3} fullWidth/>
+                                      <TextField label={local.getMessage(CompanyModel, CompanyModel.ABOUT)}
+                                                 name={CompanyModel.ABOUT} multiline rows={3} fullWidth/>
                                   </Grid>
                                   <Grid item xs={12}>
                                       <Typography

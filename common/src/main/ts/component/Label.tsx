@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Stack, Box, FormControl} from '@mui/material';
+import {Stack, Box} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const Item = styled(Box)(({ theme }) => ({

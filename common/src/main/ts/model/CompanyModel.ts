@@ -2,7 +2,6 @@ import BaseModel from "@common/model/BaseModel";
 
 export default class CompanyModel extends BaseModel<string> {
 
-    public static readonly MODEL = 'Company';
     public static readonly HOST_NAME = 'hostName';
     public static readonly LATIN_NAME = 'latinName';
     public static readonly PERSIAN_NAME = 'persianName';
