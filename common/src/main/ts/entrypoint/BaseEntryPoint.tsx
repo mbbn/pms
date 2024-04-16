@@ -10,7 +10,7 @@ import {Context, useEffect} from "react";
 import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
 import {RouteProvider} from "@common/provider/RouteProvider";
-import {LocalProvider} from "@common/provider/LocalProvider";
+import {LocalProvider, useLocal} from "@common/provider/LocalProvider";
 
 interface AppContextProps {
     initialized: boolean;
@@ -64,7 +64,6 @@ export const AppProvider = (props: AppProps) => {
     if(!appValue.initialized){
         return preLoadingView();
     }
-    console.log('sss', appValue);
 
     return (<AppContext.Provider value={appValue}>
         <LocalProvider messagesJson={props.messagesJson}>
@@ -83,7 +82,7 @@ export const AppProvider = (props: AppProps) => {
                     p: 4
                 }}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
+                        {useLocal().getCommonMessage('waiting')}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
