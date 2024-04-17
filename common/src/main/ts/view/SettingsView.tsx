@@ -32,8 +32,8 @@ export const SettingsView = () => {
                       validate={validate} submit={values => {
             app.openWaiting();
             companyService.update(values).then(value => {
-                app.closeWaiting();
                 setCompany(value);
+                app.closeWaiting();
             });
         }} render={({values}) =>
                           <>

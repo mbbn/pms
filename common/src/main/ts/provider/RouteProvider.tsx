@@ -4,11 +4,14 @@ import MenuPanel from "@common/component/MenuPanel";
 import {
     Box,
     Container,
+    Paper,
     Grid
 } from "@mui/material";
+import {blueGrey} from "@mui/material/colors";
 import {AboutUsView} from "@common/view/AboutUsView";
 import {SettingsView} from "@common/view/SettingsView";
 import AppAppBar from "@common/component/AppAppBar";
+import {Footer} from "@common/component/Footer";
 
 interface RouteContextProps {
 }
@@ -16,10 +19,10 @@ interface RouteContextProps {
 const RouteContext = React.createContext<RouteContextProps>({
 });
 
-interface RouteProviderProps {
+interface RouteProps {
 }
 
-export const RouteProvider = (props: RouteProviderProps) => {
+export const RouteProvider = (props: RouteProps) => {
     const value = React.useMemo(
         () => ({
         }),
@@ -57,6 +60,13 @@ export const RouteProvider = (props: RouteProviderProps) => {
                         </Grid>
                     </Grid>
                 </Container>
+                <Paper sx={{
+                    backgroundColor: blueGrey[50],
+                    pt: {xs: 9, sm: 12},
+                    pb: {xs: 8, sm: 12},
+                }}>
+                    <Footer/>
+                </Paper>
             </Box>
         </HashRouter>
     </RouteContext.Provider>

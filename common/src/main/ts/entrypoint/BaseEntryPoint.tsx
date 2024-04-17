@@ -11,11 +11,11 @@ import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
 import {RouteProvider} from "@common/provider/RouteProvider";
 import {LocalProvider, useLocal} from "@common/provider/LocalProvider";
+import {MessageBoxProvider} from "@common/provider/MessageBoxProvider";
 
 interface AppContextProps {
     initialized: boolean;
     menus?: MenuModel[];
-
     openWaiting(): void;
     closeWaiting(): void;
 }
@@ -39,7 +39,7 @@ interface AppProps extends ScrollProps {
 }
 
 export const AppProvider = (props: AppProps) => {
-    const [openModal, setOpenModal] = React.useState(true);
+    const [open, setOpen] = React.useState(true);
     const [appValue, setAppValue] = React.useState((): AppContextProps => ({
         initialized: false,
         openWaiting() {},
@@ -52,14 +52,14 @@ export const AppProvider = (props: AppProps) => {
                 initialized: true,
                 menus,
                 openWaiting() {
-                    setOpenModal(true);
+                    setOpen(true);
                 },
                 closeWaiting() {
-                    setOpenModal(false);
+                    setOpen(false);
                 }
-            })
+            });
+            setOpen(false);
         });
-        // setOpenModal(false);
     },[]);
     if(!appValue.initialized){
         return preLoadingView();
@@ -67,28 +67,7 @@ export const AppProvider = (props: AppProps) => {
 
     return (<AppContext.Provider value={appValue}>
         <LocalProvider messagesJson={props.messagesJson}>
-            <Modal open={openModal}
-                   aria-labelledby="modal-modal-title"
-                   aria-describedby="modal-modal-description" >
-                <Box sx={{
-                    position: 'absolute' as 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: 400,
-                    bgcolor: 'background.paper',
-                    border: '2px solid #000',
-                    boxShadow: 24,
-                    p: 4
-                }}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        {useLocal().getCommonMessage('waiting')}
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
-                </Box>
-            </Modal>
+            <MessageBoxProvider open={open}/>
             <RouteProvider/>
         </LocalProvider>
     </AppContext.Provider>);

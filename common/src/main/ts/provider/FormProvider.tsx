@@ -10,7 +10,7 @@ export type Validator<MODEL> = {
     notEmpty(propertyName: string, propertyTitle: string): void;
 };
 
-interface FormProviderProps<MODEL extends BaseModel<any>> {
+interface FormProps<MODEL extends BaseModel<any>> {
     title: string;
     icon: React.ReactNode;
     initialValues: MODEL;
@@ -21,7 +21,7 @@ interface FormProviderProps<MODEL extends BaseModel<any>> {
     submit?(values: MODEL): void;
 }
 
-export const FormProvider = ({title, icon, initialValues, validate, submit, render}: FormProviderProps<any>) => {
+export const FormProvider = ({title, icon, initialValues, validate, submit, render}: FormProps<any>) => {
     const local = useLocal();
     const validation = (values: any): void | object | Promise<FormikErrors<any>> => {
         if (validate) {

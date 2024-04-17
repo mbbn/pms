@@ -26,12 +26,12 @@ const LocalContext = React.createContext<LocalContextProps>({
     getCommonMessage: ()=> ''
 });
 
-interface LocalProviderProps {
+interface LocalProps {
     children: any;
     messagesJson: {};
 }
 
-export const LocalProvider = ({messagesJson, children}: LocalProviderProps) => {
+export const LocalProvider = ({messagesJson, children}: LocalProps) => {
     const i18n = initLocalization(messagesJson, 'fa');
     const direction = i18n.dir(i18n.language);
     document.body.dir = direction;
