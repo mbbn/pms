@@ -106,10 +106,9 @@ module.exports = (env, argv) => ({
         new CopyWebpackPlugin({
             patterns: [
                 { from: "src/main/resources/static/img", to: "img" },
+                { from: "../common/src/main/resources/static/img", to: "img" },
                 { from: "src/main/resources/static/fav", to: "favicons" },
-                { from: "src/main/resources/static/html", to: "html" },
-                /*{from: './src/main/webapp'},*/
-                /*{from: '../common/src/main/webapp'}*/
+                { from: "src/main/resources/static/html", to: "html" }
             ]
         },
             {ignore: ['WEB-INF/**/*', 'META-INF/!**!/!*', 'error/!**/!*', '*.jsp']}

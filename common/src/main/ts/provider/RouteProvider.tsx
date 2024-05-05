@@ -8,11 +8,13 @@ import {
     Grid
 } from "@mui/material";
 import {blueGrey} from "@mui/material/colors";
-import {AboutUsView} from "@common/view/AboutUsView";
-import {SettingsView} from "@common/view/SettingsView";
 import AppAppBar from "@common/component/AppAppBar";
 import {Footer} from "@common/component/Footer";
 
+export interface View {
+    path: string;
+    component: React.ComponentType;
+}
 interface RouteContextProps {
 }
 
@@ -20,9 +22,10 @@ const RouteContext = React.createContext<RouteContextProps>({
 });
 
 interface RouteProps {
+    views : View[];
 }
 
-export const RouteProvider = (props: RouteProps) => {
+export const RouteProvider = ({views}: RouteProps) => {
     const value = React.useMemo(
         () => ({
         }),
@@ -54,8 +57,7 @@ export const RouteProvider = (props: RouteProps) => {
                         </Grid>
                         <Grid item xs={12} md={9}>
                             <Routes>
-                                <Route key={0} index={true} path="/" Component={AboutUsView}/>
-                                <Route key={1} path="/settings" Component={SettingsView}/>
+                                {views.map((view, viewIndex) => <Route key={viewIndex} index={viewIndex === 0} path={view.path} Component={view.component}/>)}
                             </Routes>
                         </Grid>
                     </Grid>

@@ -1,16 +1,11 @@
 import * as React from 'react';
-import {
-    Box,
-    Modal,
-    Typography
-} from "@mui/material";
 import "@fontsource/roboto"; // Defaults to weight 400
 import "@common/assets/scss/main.scss";
 import {Context, useEffect} from "react";
 import MenuModel from "@common/model/MenuModel";
 import MenuService from "@common/service/MenuService";
-import {RouteProvider} from "@common/provider/RouteProvider";
-import {LocalProvider, useLocal} from "@common/provider/LocalProvider";
+import {RouteProvider, View} from "@common/provider/RouteProvider";
+import {LocalProvider} from "@common/provider/LocalProvider";
 import {MessageBoxProvider} from "@common/provider/MessageBoxProvider";
 
 interface AppContextProps {
@@ -36,9 +31,10 @@ interface ScrollProps {
 
 interface AppProps extends ScrollProps {
     messagesJson: {};
+    views : View[];
 }
 
-export const AppProvider = (props: AppProps) => {
+export const AppProvider = ({views, messagesJson}: AppProps) => {
     const [open, setOpen] = React.useState(true);
     const [appValue, setAppValue] = React.useState((): AppContextProps => ({
         initialized: false,
@@ -66,9 +62,9 @@ export const AppProvider = (props: AppProps) => {
     }
 
     return (<AppContext.Provider value={appValue}>
-        <LocalProvider messagesJson={props.messagesJson}>
+        <LocalProvider messagesJson={messagesJson}>
             <MessageBoxProvider open={open}/>
-            <RouteProvider/>
+            <RouteProvider views={views}/>
         </LocalProvider>
     </AppContext.Provider>);
 };

@@ -23,4 +23,10 @@ public interface EntityMapper {
     @Mapping(target = "persianName", source = "persianName")
     @Mapping(target = "about", source = "about")
     CompanyEntity convert(CompanyEntity entity);
+
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "latinName", source = "latinName")
+    @Mapping(target = "persianName", source = "persianName")
+    CategoryEntity convert(CategoryEntity categoryEntity);
 }
